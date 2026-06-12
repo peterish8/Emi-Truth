@@ -155,6 +155,15 @@ export const offerPresets = [
     price: 64999,
     cashDiscount: 5000,
   }),
+  buildNoCostPreset({
+    id: "galaxy-s25",
+    label: "Galaxy S25",
+    detail: "256GB · 6M",
+    note:
+      "Samsung India online price ₹92,999 for Galaxy S25 256GB (Jun 2026). Samsung Finance+ and partner banks run 6-month no-cost EMI; full-payment deals on Amazon and Flipkart often cut ₹6,000–₹8,000 with card instant discount.",
+    price: 92999,
+    cashDiscount: 7000,
+  }),
 ];
 
 export function findMatchingPreset(inputs) {

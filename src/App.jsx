@@ -62,6 +62,7 @@ const fields = [
 function Header({ learn = false }) {
   return (
     <div className="header-bar">
+    <CornerTriangles corners="tl-br" className="header-triangles" />
     <header className="site-header">
       <a className="wordmark" href="/" aria-label="EMI Truth home">
         <img src="/logo.jpeg" alt="EMI Truth" className="site-logo" />
@@ -90,6 +91,95 @@ function Arrow() {
   );
 }
 
+const HERO_CORNER_ARM_LENGTH = 7;
+
+function HeroCornerDots({ corner = "tr" }) {
+  const horizontalArm = Array.from(
+    { length: HERO_CORNER_ARM_LENGTH },
+    (_, i) => i,
+  );
+  const verticalArm = Array.from(
+    { length: HERO_CORNER_ARM_LENGTH - 1 },
+    (_, i) => i + 1,
+  );
+
+  if (corner === "bl") {
+    return (
+      <div className="hero-corner-dots hero-corner-dots-bl" aria-hidden="true">
+        <div className="hero-corner-dots-left">
+          {verticalArm.map((i) => (
+            <span
+              className="hero-corner-dot"
+              key={`l-${i}`}
+              style={{ "--i": i }}
+            />
+          ))}
+        </div>
+        <div className="hero-corner-dots-bottom">
+          {horizontalArm.map((i) => (
+            <span
+              className="hero-corner-dot"
+              key={`b-${i}`}
+              style={{ "--i": i }}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="hero-corner-dots hero-corner-dots-tr" aria-hidden="true">
+      <div className="hero-corner-dots-top">
+        {horizontalArm.map((i) => (
+          <span
+            className="hero-corner-dot"
+            key={`t-${i}`}
+            style={{ "--i": i }}
+          />
+        ))}
+      </div>
+      <div className="hero-corner-dots-right">
+        {verticalArm.map((i) => (
+          <span
+            className="hero-corner-dot"
+            key={`r-${i}`}
+            style={{ "--i": i }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CornerTriangles({ corners = "all", className = "" }) {
+  const map = {
+    all: ["tl", "tr", "bl", "br"],
+    "tr-bl": ["tr", "bl"],
+    "tl-br": ["tl", "br"],
+    tr: ["tr"],
+    bl: ["bl"],
+  };
+  const active = map[corners] ?? map.all;
+
+  return (
+    <div className={`corner-triangles ${className}`.trim()} aria-hidden="true">
+      {active.map((corner) => (
+        <i key={corner} className={`corner-tri corner-tri-${corner}`} />
+      ))}
+    </div>
+  );
+}
+
+function InfoIcon() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" />
+      <path d="M8 7.1v4.4M8 5.4h.01" />
+    </svg>
+  );
+}
+
 function NumberInput({ field, value, onChange }) {
   return (
     <label className="input-block">
@@ -112,27 +202,186 @@ function NumberInput({ field, value, onChange }) {
   );
 }
 
+function buildResultBreakdown(result) {
+  const { normalized, schedule, difference, cashCost } = result;
+  const tenure = normalized.tenure;
+  const costsMore = difference >= 0;
+  const absDiff = Math.abs(difference);
+  const extraPerMonth = tenure > 0 ? absDiff / tenure : 0;
+  const totalDebits = schedule.reduce((sum, row) => sum + row.payment, 0);
+  const bankCharges = normalized.processingFee + result.feeGst;
+  const rows = [];
+
+  if (normalized.emiDiscount > 0) {
+    rows.push({
+      label: "EMI checkout discount",
+      value: formatInr(normalized.emiDiscount),
+      note: costsMore
+        ? `Taken off the price when you pick EMI. You still pay ${formatInr(absDiff)} more than ${formatInr(cashCost)} if you paid in full today.`
+        : `Taken off the price when you pick EMI. You still save ${formatInr(absDiff)} vs paying ${formatInr(cashCost)} in full today.`,
+    });
+  }
+
+  if (normalized.cashDiscount > 0) {
+    rows.push({
+      label: "Full payment discount",
+      value: formatInr(normalized.cashDiscount),
+      note: `You only get this if you pay in one go. Your total would be ${formatInr(cashCost)}.`,
+    });
+  }
+
+  rows.push({
+    label: costsMore ? "About extra each month" : "About saved each month",
+    value: formatInr(extraPerMonth),
+    note: costsMore
+      ? `Spread over ${tenure} months, that adds up to ${formatInr(absDiff)} more than paying today.`
+      : `Spread over ${tenure} months, that adds up to ${formatInr(absDiff)} less than paying today.`,
+  });
+
+  rows.push({
+    label: "Total from your card",
+    value: formatInr(totalDebits),
+    note: `All ${tenure} monthly deductions combined (bank fee not included yet).`,
+  });
+
+  if (bankCharges > 0) {
+    rows.push({
+      label: "Bank fee (one time)",
+      value: formatInr(bankCharges),
+      note: "Processing charge + GST. Usually hits your card in the first month.",
+    });
+  }
+
+  return rows;
+}
+
 function Verdict({ result }) {
   const costsMore = result.difference >= 0;
   const hiddenCharges =
     result.totalGstOnInterest + result.feeGst + result.normalized.processingFee;
+  const absDiff = Math.abs(result.difference);
 
   return (
     <div className="verdict">
-      <span className="figure-label">RESULT / LIVE</span>
+      <span className="figure-label">YOUR RESULT</span>
       <p className="verdict-prefix">
-        {costsMore ? "EMI costs" : "EMI saves"}
+        {costsMore ? "EMI costs you" : "EMI saves you"}
       </p>
       <strong className={costsMore ? "negative" : "positive"}>
-        {formatInr(Math.abs(result.difference))}
+        {formatInr(absDiff)}
       </strong>
       <p className="verdict-suffix">
-        {costsMore ? "more than paying now." : "compared with paying now."}
+        {costsMore
+          ? "more than paying in full today."
+          : "compared with paying in full today."}
       </p>
+      {result.normalized.emiDiscount > 0 ? (
+        <p className="verdict-context">
+          {costsMore
+            ? `Yes, ${formatInr(result.normalized.emiDiscount)} comes off at checkout. In total you still pay ${formatInr(absDiff)} more.`
+            : `You get ${formatInr(result.normalized.emiDiscount)} off at checkout. Overall you still save ${formatInr(absDiff)}.`}
+        </p>
+      ) : null}
       <p className="verdict-insight">
-        Hidden extras on EMI: {formatInr(hiddenCharges)} in GST and fees —
-        not covered by most no-cost offers.
+        Plus {formatInr(hiddenCharges)} in GST and bank fees on top. Most
+        &ldquo;no cost&rdquo; offers don&apos;t cover these.
       </p>
+    </div>
+  );
+}
+
+function ResultBreakdown({ result }) {
+  const rows = buildResultBreakdown(result);
+
+  return (
+    <div className="result-breakdown" aria-label="Plain English cost breakdown">
+      {rows.map((row) => (
+        <div className="result-breakdown-row" key={row.label}>
+          <span>{row.label}</span>
+          <strong>{row.value}</strong>
+          <small>{row.note}</small>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ExamplePicker({ activePreset, onSelect, className = "" }) {
+  return (
+    <div className={`example-picker ${className}`.trim()}>
+      <div className="example-picker-head">
+        <span className="input-label">Try an example</span>
+        <span className="input-hint">Real India list prices · Jun 2026</span>
+      </div>
+      <div className="example-options" aria-label="Example offers">
+        {offerPresets.map((preset, index) => {
+          const isActive = activePreset === preset.id;
+          const popoverAlign =
+            index % 2 === 0 ? "popover-align-start" : "popover-align-end";
+
+          return (
+            <div
+              key={preset.id}
+              className={`example-option${isActive ? " active" : ""}`}
+            >
+              <button
+                type="button"
+                className={isActive ? "active" : ""}
+                onClick={() => onSelect(preset)}
+                aria-pressed={isActive}
+              >
+                <span>{preset.label}</span>
+                <small>{preset.detail}</small>
+              </button>
+              {preset.note ? (
+                <button
+                  type="button"
+                  className="example-info-trigger"
+                  aria-label={`Source note for ${preset.label}`}
+                  aria-describedby={`preset-note-${preset.id}`}
+                >
+                  <InfoIcon />
+                  <span
+                    id={`preset-note-${preset.id}`}
+                    className={`example-info-popover ${popoverAlign}`}
+                    role="tooltip"
+                  >
+                    {preset.note}
+                  </span>
+                </button>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function MonthlyDebits({ result }) {
+  const firstDebit = result.schedule[0]?.payment ?? result.monthlyEmi;
+  const avgDebit =
+    result.schedule.length > 0
+      ? result.schedule.reduce((sum, row) => sum + row.payment, 0) /
+        result.schedule.length
+      : result.monthlyEmi;
+
+  return (
+    <div className="monthly">
+      <div className="monthly-row">
+        <span>MONTHLY EMI</span>
+        <strong>{formatInr(result.monthlyEmi)}</strong>
+      </div>
+      <div className="monthly-row">
+        <span>ACTUALLY DEDUCTED</span>
+        <strong>{formatInr(firstDebit)}</strong>
+      </div>
+      <small>
+        What leaves your card in month 1 (includes GST on interest).
+        {result.normalized.tenure > 1
+          ? ` Roughly ${formatInr(avgDebit)} per month on average.`
+          : ""}
+      </small>
     </div>
   );
 }
@@ -140,10 +389,10 @@ function Verdict({ result }) {
 function ComparisonChart({ result }) {
   const max = Math.max(result.cashCost, result.emiCost, 1);
   return (
-    <div className="comparison-chart" aria-label="Cash and EMI cost comparison">
+    <div className="comparison-chart" aria-label="Pay today vs pay on EMI">
       <div className="chart-row">
         <div>
-          <span>PAY NOW</span>
+          <span>PAY IN FULL TODAY</span>
           <strong>{formatInr(result.cashCost)}</strong>
         </div>
         <div className="track">
@@ -155,7 +404,7 @@ function ComparisonChart({ result }) {
       </div>
       <div className="chart-row">
         <div>
-          <span>EMI TOTAL</span>
+          <span>PAY ON EMI (TOTAL)</span>
           <strong>{formatInr(result.emiCost)}</strong>
         </div>
         <div className="track">
@@ -216,7 +465,6 @@ function HomePage() {
     () => findMatchingPreset(readInputsFromUrl())?.id ?? "",
   );
   const result = useMemo(() => calculateEmi(inputs), [inputs]);
-  const activePresetNote = offerPresets.find((preset) => preset.id === activePreset)?.note;
 
   const updateInput = (key, value) => {
     setInputs((current) => {
@@ -251,48 +499,35 @@ function HomePage() {
             <span>01</span>
             <span>CALCULATOR</span>
           </div>
-          <div className="hero-copy" data-reveal>
-            <h1>
-              Is it actually
-              <br />
-              <em>no-cost?</em>
-            </h1>
-            <p>
-              Type the price, pick the plan. We show the real total — interest,
-              GST, processing fee and the cash discount you lose.
-            </p>
+          <div className="hero-body">
+            <div className="hero-copy" data-reveal>
+              <HeroCornerDots corner="tr" />
+              <HeroCornerDots corner="bl" />
+              <h1>
+                Is it actually
+                <br />
+                <em>no-cost?</em>
+              </h1>
+              <p>
+                Type the price, pick the plan. We show the real total: interest,
+                GST, processing fee and the cash discount you lose.
+              </p>
+            </div>
+            <ExamplePicker
+              className="hero-example-picker"
+              activePreset={activePreset}
+              onSelect={applyPreset}
+            />
           </div>
           </section>
 
           <section className="calculator-section" id="calculator">
+          <CornerTriangles corners="all" className="calculator-triangles" />
           <div className="calculator-form">
             <div className="section-topline">
               <span className="figure-label">INPUT / OFFER DETAILS</span>
               <span>Free · no login · calculated on your device</span>
             </div>
-            <div className="example-row">
-              <div>
-                <span className="input-label">Try an example</span>
-                <span className="input-hint">Real India list prices · Jun 2026</span>
-              </div>
-              <div className="example-options" aria-label="Example offers">
-                {offerPresets.map((preset) => (
-                  <button
-                    key={preset.id}
-                    type="button"
-                    className={activePreset === preset.id ? "active" : ""}
-                    onClick={() => applyPreset(preset)}
-                    aria-pressed={activePreset === preset.id}
-                  >
-                    <span>{preset.label}</span>
-                    <small>{preset.detail}</small>
-                  </button>
-                ))}
-              </div>
-            </div>
-            {activePresetNote ? (
-              <p className="example-note">{activePresetNote}</p>
-            ) : null}
             <div className="input-grid">
               {fields.slice(0, 3).map((field) => (
                 <NumberInput
@@ -338,13 +573,11 @@ function HomePage() {
           </div>
 
           <div className="result-panel" aria-live="polite">
+            <CornerTriangles corners="tl-br" className="result-triangles" />
             <Verdict result={result} />
-            <div className="monthly">
-              <span>BASE MONTHLY EMI</span>
-              <strong>{formatInr(result.monthlyEmi)}</strong>
-              <small>+ GST on each month’s interest</small>
-            </div>
+            <MonthlyDebits result={result} />
             <ComparisonChart result={result} />
+            <ResultBreakdown result={result} />
             <button className="share-button" onClick={share}>
               {copied ? "Result link copied" : "Share this result"} <Arrow />
             </button>
@@ -388,6 +621,7 @@ function HomePage() {
         </section>
 
         <section className="analysis-section">
+          <CornerTriangles corners="bl" className="analysis-triangles" />
           <div className="section-rail">
             <span>02</span>
             <span>THE TRUTH</span>
