@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
@@ -1199,10 +1199,16 @@ function ModuleQuiz({ questions, moduleTitle, next }) {
 function ComicPage() {
   const pages = [
     ["cover.png", "The No-Cost Trap comic cover."],
-    ["page-01.png", "Mira pauses a no-cost EMI checkout and decides to compare the full price."],
-    ["page-02.png", "Mira calculates cash price, EMI principal, GST, fees and total EMI."],
-    ["page-03.png", "Mira asks the seller for complete offer terms."],
-    ["page-04.png", "Mira teaches the three-number EMI decision checklist."],
+    ["page-01.png", "A shopkeeper offers Mira a no-cost EMI laptop."],
+    ["page-02.png", "Mira stops the checkout and asks for every offer detail."],
+    ["page-03.png", "Mira explains principal, tenure, monthly EMI and interest."],
+    ["page-04.png", "Mira discovers the cash discount lost with EMI."],
+    ["page-05.png", "The shopkeeper reveals the processing fee."],
+    ["page-06.png", "Mira explains GST on fees and EMI interest."],
+    ["page-07.png", "Mira calculates the complete cost of the EMI offer."],
+    ["page-08.png", "The full comparison reveals the no-cost EMI costs more."],
+    ["page-09.png", "The shopkeeper is stunned that Mira found the hidden cost."],
+    ["page-10.png", "Mira's six-question checklist for every EMI offer."],
   ];
   const glossary = [
     ["Principal", "The amount you actually borrow or finance."],
@@ -1216,14 +1222,17 @@ function ComicPage() {
   const [animPhase, setAnimPhase] = useState("idle");
   const [pendingPage, setPendingPage] = useState(null);
   const maxPage = pages.length - 1;
-  const visiblePages = pages.slice(pageIndex, pageIndex + 2);
-
-  const turnPage = (nextPage) => {
-    if (nextPage < 0 || nextPage > maxPage || animPhase !== "idle") return;
+  const turnPage = useCallback((nextPage) => {
+    if (
+      nextPage < 0 ||
+      nextPage > maxPage ||
+      nextPage === pageIndex ||
+      animPhase !== "idle"
+    ) return;
     const dir = nextPage > pageIndex ? "next" : "prev";
     setPendingPage(nextPage);
-    setAnimPhase(`exit-${dir}`);
-  };
+    setAnimPhase(dir);
+  }, [animPhase, maxPage, pageIndex]);
 
   const handleAnimEnd = () => {
     setPageIndex(pendingPage);
@@ -1231,11 +1240,21 @@ function ComicPage() {
     setPendingPage(null);
   };
 
-  const flipIndex = animPhase.endsWith("next")
-    ? Math.min(1, visiblePages.length - 1)
-    : 0;
-  const pageFlipClass = (i) =>
-    animPhase.startsWith("exit") && i === flipIndex ? ` flip-${animPhase}` : "";
+  useEffect(() => {
+    const handleKeys = (event) => {
+      if (event.key === "ArrowRight") turnPage(pageIndex + 1);
+      if (event.key === "ArrowLeft") turnPage(pageIndex - 1);
+    };
+    window.addEventListener("keydown", handleKeys);
+    return () => window.removeEventListener("keydown", handleKeys);
+  }, [pageIndex, turnPage]);
+
+  const currentPage = pages[pageIndex];
+  const incomingPage = pendingPage === null ? null : pages[pendingPage];
+  const visiblePages = [currentPage];
+  const flipIndex = 0;
+  const pageFlipClass = () =>
+    animPhase === "idle" ? "" : ` flipping-${animPhase}`;
 
   return (
     <>
@@ -1245,7 +1264,7 @@ function ComicPage() {
         <section className="comic-hero">
           <div className="comic-rail">
             <span>BOOK / 01</span>
-            <span>4 PAGES</span>
+            <span>10 PAGES</span>
           </div>
           <div className="comic-hero-copy" data-reveal>
             <a href="/learn/no-cost-emi">← Read the lesson</a>
@@ -1293,15 +1312,15 @@ function ComicPage() {
               <div className="reader-topline">
                 <span>THE NO-COST TRAP / ONLINE READER</span>
                 <span>
-                  {pageIndex + 1}–{Math.min(pageIndex + 2, pages.length)} / {pages.length}
+                  {pageIndex + 1} / {pages.length}
                 </span>
               </div>
               <div className="book-spread">
                 <button
                   className="spread-nav spread-nav-prev"
                   onClick={() => turnPage(pageIndex - 1)}
-                  disabled={pageIndex === 0}
-                  aria-label="Previous pages"
+                  disabled={pageIndex === 0 || animPhase !== "idle"}
+                  aria-label="Previous page"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19l-7-7 7-7"/></svg>
                 </button>
@@ -1315,16 +1334,20 @@ function ComicPage() {
                     <span>
                       {file === "cover.png"
                         ? "COVER"
-                        : `PAGE ${String(pageIndex + index).padStart(2, "0")}`}
+                        : `PAGE ${String(pageIndex).padStart(2, "0")}`}
                     </span>
                   </article>
                 ))}
-                {visiblePages.length === 1 ? <div className="reader-end">END</div> : null}
+                {incomingPage ? (
+                  <article className="reader-page reader-page-incoming" aria-hidden="true">
+                    <img src={`/books/the-no-cost-trap/${incomingPage[0]}`} alt="" decoding="async" />
+                  </article>
+                ) : null}
                 <button
                   className="spread-nav spread-nav-next"
                   onClick={() => turnPage(pageIndex + 1)}
-                  disabled={pageIndex === maxPage}
-                  aria-label="Next pages"
+                  disabled={pageIndex === maxPage || animPhase !== "idle"}
+                  aria-label="Next page"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
@@ -1336,16 +1359,15 @@ function ComicPage() {
                       aria-label={`Open ${alt}`}
                       className={index === pageIndex ? "active" : ""}
                       onClick={() => turnPage(index)}
-                      key={index}
+                      disabled={animPhase !== "idle"}
+                      key={alt}
                     />
                   ))}
                 </div>
               </div>
             </div>
-            <div className="reader-ad-panel">
-              <AdSlot reader />
-            </div>
           </div>
+          <AdSlot reader />
         </section>
 
         <section className="comic-takeaway" data-reveal>
