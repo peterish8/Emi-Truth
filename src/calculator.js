@@ -8,51 +8,6 @@ export const DEFAULT_INPUTS = {
   gstRate: 18,
 };
 
-export function findMatchingPreset(inputs) {
-  return offerPresets.find((preset) =>
-    Object.keys(preset.inputs).every(
-      (key) => Number(preset.inputs[key]) === Number(inputs[key]),
-    ),
-  );
-}
-
-export const offerPresets = [
-  {
-    id: "phone",
-    label: "Phone",
-    note: "₹59,900 · 6M",
-    inputs: { ...DEFAULT_INPUTS },
-  },
-  {
-    id: "laptop",
-    label: "Laptop",
-    note: "₹89,990 · 6M",
-    inputs: {
-      price: 89990,
-      cashDiscount: 5000,
-      emiDiscount: 7000,
-      annualRate: 15,
-      tenure: 6,
-      processingFee: 299,
-      gstRate: 18,
-    },
-  },
-  {
-    id: "appliance",
-    label: "Fridge",
-    note: "₹42,000 · 9M",
-    inputs: {
-      price: 42000,
-      cashDiscount: 2000,
-      emiDiscount: 2500,
-      annualRate: 15,
-      tenure: 9,
-      processingFee: 199,
-      gstRate: 18,
-    },
-  },
-];
-
 export function calculateEmi(inputs) {
   const price = Math.max(0, Number(inputs.price) || 0);
   const cashDiscount = Math.max(0, Number(inputs.cashDiscount) || 0);
