@@ -3,6 +3,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   calculateEmi,
+  findMatchingPreset,
+  offerPresets,
   readInputsFromUrl,
   toShareUrl,
 } from "./calculator";
@@ -72,8 +74,8 @@ function Header({ learn = false }) {
         </a>
         <a href="/#checkout-questions">Before checkout</a>
       </nav>
-      <a className="method-link" href={learn ? "/#calculator" : "/learn"}>
-        {learn ? "Open calculator" : "Learn EMI basics"} <Arrow />
+      <a className="method-link" href={learn ? "/#calculator" : "/#calculator"}>
+        {learn ? "Open calculator" : "Check my offer"} <Arrow />
       </a>
     </header>
     </div>
@@ -110,10 +112,13 @@ function NumberInput({ field, value, onChange }) {
   );
 }
 
-function Verdict({ result }) {
+function Verdict({ result, compact = false }) {
   const costsMore = result.difference >= 0;
+  const hiddenCharges =
+    result.totalGstOnInterest + result.feeGst + result.normalized.processingFee;
+
   return (
-    <div className="verdict">
+    <div className={`verdict${compact ? " verdict-compact" : ""}`}>
       <span className="figure-label">RESULT / LIVE</span>
       <p className="verdict-prefix">
         {costsMore ? "EMI costs" : "EMI saves"}
@@ -124,7 +129,41 @@ function Verdict({ result }) {
       <p className="verdict-suffix">
         {costsMore ? "more than paying now." : "compared with paying now."}
       </p>
+      {!compact ? (
+        <p className="verdict-insight">
+          Hidden extras on EMI: {formatInr(hiddenCharges)} in GST and fees —
+          not covered by most no-cost offers.
+        </p>
+      ) : null}
     </div>
+  );
+}
+
+function HeroPreview({ result, inputs }) {
+  const costsMore = result.difference >= 0;
+  return (
+    <aside className="hero-preview" aria-label="Live comparison preview">
+      <span className="hero-preview-label">Live preview</span>
+      <p className="hero-preview-lead">
+        {costsMore ? "EMI costs" : "EMI saves"}{" "}
+        <strong className={costsMore ? "negative" : "positive"}>
+          {formatInr(Math.abs(result.difference))}
+        </strong>
+      </p>
+      <div className="hero-preview-bars">
+        <div className="hero-preview-row">
+          <span>Pay now</span>
+          <strong>{formatInr(result.cashCost)}</strong>
+        </div>
+        <div className="hero-preview-row">
+          <span>EMI total</span>
+          <strong>{formatInr(result.emiCost)}</strong>
+        </div>
+      </div>
+      <p className="hero-preview-meta">
+        {inputs.tenure} months · {inputs.annualRate}% · updates as you type
+      </p>
+    </aside>
   );
 }
 
@@ -203,10 +242,23 @@ function CostComposition({ result }) {
 function HomePage() {
   const [inputs, setInputs] = useState(readInputsFromUrl);
   const [copied, setCopied] = useState(false);
+  const [activePreset, setActivePreset] = useState(
+    () => findMatchingPreset(readInputsFromUrl())?.id ?? "",
+  );
   const result = useMemo(() => calculateEmi(inputs), [inputs]);
 
   const updateInput = (key, value) => {
-    setInputs((current) => ({ ...current, [key]: value }));
+    setInputs((current) => {
+      const next = { ...current, [key]: value };
+      setActivePreset(findMatchingPreset(next)?.id ?? "");
+      return next;
+    });
+    setCopied(false);
+  };
+
+  const applyPreset = (preset) => {
+    setInputs(preset.inputs);
+    setActivePreset(preset.id);
     setCopied(false);
   };
 
@@ -229,14 +281,26 @@ function HomePage() {
             <span>CALCULATOR</span>
           </div>
           <div className="hero-copy" data-reveal>
-            <h1>
-              Is it actually
-              <br />
-              <em>no-cost?</em>
-            </h1>
-            <p>
-              Type the price, pick the plan. We show you the real total: interest, GST, processing fee and all. So you know exactly what you pay before you tap Buy.
-            </p>
+            <div className="hero-main">
+              <h1>
+                Is it actually
+                <br />
+                <em>no-cost?</em>
+              </h1>
+              <p className="hero-lead">
+                Enter your checkout numbers. We compare pay-now vs EMI total —
+                interest, GST, processing fee and the cash discount you lose.
+              </p>
+              <ul className="hero-trust" aria-label="Trust signals">
+                <li>Free</li>
+                <li>No login</li>
+                <li>Runs in your browser</li>
+              </ul>
+              <a className="hero-cta" href="#calculator">
+                Check my offer <Arrow />
+              </a>
+            </div>
+            <HeroPreview result={result} inputs={inputs} />
           </div>
           </section>
 
@@ -245,6 +309,23 @@ function HomePage() {
             <div className="section-topline">
               <span className="figure-label">INPUT / OFFER DETAILS</span>
               <span>Calculated on your device.</span>
+            </div>
+            <div className="preset-row" aria-label="Example offers">
+              <span className="preset-label">Try an example</span>
+              <div className="preset-options">
+                {offerPresets.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className={activePreset === preset.id ? "active" : ""}
+                    onClick={() => applyPreset(preset)}
+                    aria-pressed={activePreset === preset.id}
+                  >
+                    <span>{preset.label}</span>
+                    <small>{preset.note}</small>
+                  </button>
+                ))}
+              </div>
             </div>
             <div className="input-grid">
               {fields.slice(0, 3).map((field) => (
@@ -274,16 +355,19 @@ function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="input-grid lower-inputs">
-              {fields.slice(3).map((field) => (
-                <NumberInput
-                  field={field}
-                  key={field.key}
-                  value={inputs[field.key]}
-                  onChange={updateInput}
-                />
-              ))}
-            </div>
+            <details className="advanced-inputs">
+              <summary>Bank charges — rate, processing fee, GST</summary>
+              <div className="input-grid lower-inputs">
+                {fields.slice(3).map((field) => (
+                  <NumberInput
+                    field={field}
+                    key={field.key}
+                    value={inputs[field.key]}
+                    onChange={updateInput}
+                  />
+                ))}
+              </div>
+            </details>
           </div>
 
           <div className="result-panel" aria-live="polite">
