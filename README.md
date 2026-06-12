@@ -170,8 +170,9 @@ graph LR
 
 ```
 Emi-Truth/
-├── assets/readme/              # README SVG visuals
-│   ├── banner.svg              # Hero banner
+├── assets/readme/              # README SVG visuals + logo
+│   ├── logo.jpeg               # Brand mark (₹ + lens)
+│   ├── banner.svg              # Premium hero banner
 │   ├── features.svg            # 4-card feature overview
 │   ├── academy.svg             # 8-module grid
 │   ├── calculator-breakdown.svg
