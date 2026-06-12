@@ -8,52 +8,6 @@ export const DEFAULT_INPUTS = {
   gstRate: 18,
 };
 
-export const offerPresets = [
-  {
-    id: "phone",
-    label: "Phone",
-    detail: "₹59,900 · 6M",
-    inputs: { ...DEFAULT_INPUTS },
-  },
-  {
-    id: "macbook",
-    label: "MacBook Air M4",
-    detail: "₹97,900 · 6M",
-    note: "Apple India list price · up to ₹10k card cashback vs 6M no-cost EMI",
-    inputs: {
-      price: 97900,
-      cashDiscount: 10000,
-      emiDiscount: 6500,
-      annualRate: 15,
-      tenure: 6,
-      processingFee: 299,
-      gstRate: 18,
-    },
-  },
-  {
-    id: "fridge",
-    label: "Fridge",
-    detail: "₹42,000 · 9M",
-    inputs: {
-      price: 42000,
-      cashDiscount: 2000,
-      emiDiscount: 2500,
-      annualRate: 15,
-      tenure: 9,
-      processingFee: 199,
-      gstRate: 18,
-    },
-  },
-];
-
-export function findMatchingPreset(inputs) {
-  return offerPresets.find((preset) =>
-    Object.keys(preset.inputs).every(
-      (key) => Number(preset.inputs[key]) === Number(inputs[key]),
-    ),
-  );
-}
-
 export function calculateEmi(inputs) {
   const price = Math.max(0, Number(inputs.price) || 0);
   const cashDiscount = Math.max(0, Number(inputs.cashDiscount) || 0);
@@ -124,6 +78,91 @@ export function calculateEmi(inputs) {
       gstRate,
     },
   };
+}
+
+/** Approximate seller subsidy for a typical 6-month no-cost EMI at list price. */
+export function estimateNoCostEmiDiscount(
+  price,
+  annualRate = 15,
+  tenure = 6,
+) {
+  const { totalInterest } = calculateEmi({
+    price,
+    cashDiscount: 0,
+    emiDiscount: 0,
+    annualRate,
+    tenure,
+    processingFee: 0,
+    gstRate: 0,
+  });
+  return Math.round(totalInterest);
+}
+
+function buildNoCostPreset({
+  id,
+  label,
+  detail,
+  note,
+  price,
+  cashDiscount,
+  tenure = 6,
+  annualRate = 15,
+  processingFee = 299,
+  gstRate = 18,
+}) {
+  return {
+    id,
+    label,
+    detail,
+    note,
+    inputs: {
+      price,
+      cashDiscount,
+      emiDiscount: estimateNoCostEmiDiscount(price, annualRate, tenure),
+      annualRate,
+      tenure,
+      processingFee,
+      gstRate,
+    },
+  };
+}
+
+export const offerPresets = [
+  buildNoCostPreset({
+    id: "iphone-16",
+    label: "iPhone 16",
+    detail: "128GB · 6M",
+    note:
+      "Apple India store price ₹69,900 for 128GB (Jun 2026). Amazon/Flipkart sales often add ₹4,000–₹5,000 HDFC or Axis instant off on full payment — usually separate from the 6-month no-cost EMI path.",
+    price: 69900,
+    cashDiscount: 5000,
+  }),
+  buildNoCostPreset({
+    id: "macbook-m4",
+    label: "MacBook Air M4",
+    detail: "256GB · 6M",
+    note:
+      "Apple India ₹97,900 for 13″ MacBook Air M4 (16GB/256GB). Apple’s store banner (Jun 2026): up to 6-month no-cost EMI plus up to ₹10,000 instant cashback on eligible cards when you pay in full.",
+    price: 97900,
+    cashDiscount: 10000,
+  }),
+  buildNoCostPreset({
+    id: "oneplus-13",
+    label: "OnePlus 13",
+    detail: "12+256GB · 6M",
+    note:
+      "OnePlus India MRP ₹64,999 for 12GB+256GB. During Amazon Great Summer Sale 2026 the list price dropped to ₹57,999; bank instant discounts of ₹3,500–₹5,000 are common on full swipe at checkout.",
+    price: 64999,
+    cashDiscount: 5000,
+  }),
+];
+
+export function findMatchingPreset(inputs) {
+  return offerPresets.find((preset) =>
+    Object.keys(preset.inputs).every(
+      (key) => Number(preset.inputs[key]) === Number(inputs[key]),
+    ),
+  );
 }
 
 export function readInputsFromUrl() {

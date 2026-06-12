@@ -273,7 +273,7 @@ function HomePage() {
             <div className="example-row">
               <div>
                 <span className="input-label">Try an example</span>
-                <span className="input-hint">Tap to load numbers</span>
+                <span className="input-hint">Real India list prices · Jun 2026</span>
               </div>
               <div className="example-options" aria-label="Example offers">
                 {offerPresets.map((preset) => (
