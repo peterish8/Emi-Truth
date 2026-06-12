@@ -593,7 +593,7 @@ function HomePage() {
           <div className="resource-content">
             <a className="book-cover-link" href="/comics/the-no-cost-trap">
               <img
-                src="/books/the-no-cost-trap/cover.png"
+                src="/books/the-no-cost-trap/cover.png?v=2"
                 alt="The No-Cost Trap, a Mira Money Story comic cover"
               />
             </a>
