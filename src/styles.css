@@ -2403,10 +2403,52 @@ h2 {
   flex-shrink: 0;
 }
 
-/* 300×600 Half Page — top IAB CPM unit for sidebar */
+.ad-slot-live {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: initial;
+  color: inherit;
+}
+
+.ad-slot-live.adsbygoogle,
+.ad-slot-live .adsbygoogle {
+  margin: 0 auto;
+}
+
+.ad-ins-reader-half {
+  width: 300px;
+  height: 600px;
+}
+
+.ad-ins-sidebar {
+  width: 100%;
+  max-width: 300px;
+  min-height: 250px;
+}
+
+.ad-ins-content {
+  width: 100%;
+  max-width: 720px;
+  min-height: 90px;
+}
+
+/* 300×600 Half Page — comic reader rail */
 .ad-unit-halfpage {
   width: 300px;
   height: 600px;
+}
+
+.ad-unit-placeholder {
+  width: 100%;
+  max-width: 300px;
+  min-height: 250px;
+}
+
+.ad-slot-placeholder .ad-unit {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
 }
 
 .ad-unit {
@@ -3121,8 +3163,9 @@ h2 {
 }
 
 .ad-slot {
-  min-height: 150px;
-  margin: 32px 0 70px;
+  min-height: 90px;
+  margin: 32px auto 70px;
+  max-width: 720px;
   border: 1px dashed #aeb4ae;
   display: flex;
   flex-direction: column;
@@ -3130,6 +3173,11 @@ h2 {
   justify-content: center;
   text-align: center;
   color: var(--muted);
+}
+
+.ad-slot-live.ad-slot {
+  border: 0;
+  min-height: 0;
 }
 
 .ad-slot p {
@@ -4671,6 +4719,14 @@ h2 {
   .ad-unit-halfpage p::after {
     content: "RESPONSIVE BANNER";
     font-size: 10px;
+  }
+
+  .ad-ins-reader-half {
+    display: block !important;
+    width: 100% !important;
+    max-width: 728px !important;
+    height: auto !important;
+    min-height: 90px !important;
   }
 }
 

@@ -39,7 +39,7 @@ export const learningModules = [
         title: "How an EMI changes over time",
         body: "In a reducing-balance loan, early instalments contain more interest because the outstanding principal is higher. As the balance falls, more of each EMI repays principal.",
         visual: {
-          src: "/visuals/amortization.png",
+          src: "/visuals/amortization.webp?v=1",
           alt: "Storyboard showing interest shrinking and principal repayment growing over an EMI tenure.",
           caption: "The EMI stays fixed but the interest portion shrinks and the principal portion grows every month.",
         },
@@ -88,7 +88,7 @@ export const learningModules = [
         title: "The name is marketing, not the calculation",
         body: "The bank commonly creates a normal interest-bearing EMI. A merchant or manufacturer discount is intended to offset that interest, but it may not offset every related cost.",
         visual: {
-          src: "/visuals/no-cost-flow.png",
+          src: "/visuals/no-cost-flow.webp?v=1",
           alt: "Money-flow diagram showing the shop discount, bank interest, GST, fees and lost cash discount.",
           caption: "The merchant discount and the bank's charges are separate. GST, fees and a lost cash discount sit outside the headline promise.",
         },
@@ -149,7 +149,7 @@ export const learningModules = [
         title: "Where GST enters the bill",
         body: "For a card EMI, GST can be charged on the interest component of each instalment. GST can also apply to processing, conversion or foreclosure fees.",
         visual: {
-          src: "/visuals/gst-statement.png",
+          src: "/visuals/gst-statement.webp?v=1",
           alt: "Simplified card statement highlighting interest, GST on interest and processing fee plus GST.",
           caption: "GST follows the taxable interest and fee entries. Both amounts change month to month as the outstanding principal falls.",
         },
@@ -220,7 +220,7 @@ export const learningModules = [
         title: "Your credit limit may remain blocked",
         body: "Many issuers reduce the available credit limit by the financed amount and restore it as principal is repaid. A low available limit can increase utilization and reduce flexibility.",
         visual: {
-          src: "/visuals/card-limit.png",
+          src: "/visuals/card-limit.webp?v=1",
           alt: "Three-stage storyboard showing card limit before purchase, blocked after purchase and restored during repayment.",
           caption: "The financed amount blocks your available limit immediately. It restores gradually as each monthly principal repayment is made.",
         },
@@ -286,7 +286,7 @@ export const learningModules = [
         title: "Prepayment: reduce EMI or tenure?",
         body: "Reducing tenure generally saves more interest when you can continue paying the existing EMI. Reducing EMI improves monthly cash flow.",
         visual: {
-          src: "/visuals/prepayment-choice.png",
+          src: "/visuals/prepayment-choice.webp?v=1",
           alt: "Comparison of reducing the monthly EMI versus shortening the loan tenure after prepayment.",
           caption: "Reducing the EMI lowers monthly load. Reducing the tenure saves more total interest. Pick whichever matters more to you right now.",
         },
@@ -334,7 +334,7 @@ export const learningModules = [
         title: "Warning signs before you borrow",
         body: "Treat an offer as high risk when the lender identity is unclear, an advance fee is demanded to release a loan, or the seller pressures you to share credentials.",
         visual: {
-          src: "/visuals/scam-red-flags.png",
+          src: "/visuals/scam-red-flags.webp?v=1",
           alt: "Four loan scam warning signs: advance fee, OTP request, screen sharing and payment to a personal account.",
           caption: "Stop and verify immediately when any offer asks for credentials, remote screen access, or payment to a personal account.",
         },
@@ -396,7 +396,7 @@ export const learningModules = [
         title: "The five-number check",
         body: "Write down five numbers before deciding: cash price, financed amount, monthly EMI, all fees and total repayment.",
         visual: {
-          src: "/visuals/checkout-five-steps.png",
+          src: "/visuals/checkout-five-steps.webp?v=1",
           alt: "Five-step path from cash price through financed amount, taxes, fees and total EMI with a final pay-now vs EMI decision scale.",
           caption: "A repeatable five-step check prevents one attractive monthly number from controlling the whole decision.",
         },
@@ -460,7 +460,7 @@ export const learningModules = [
         title: "Start with a precise written complaint",
         body: "Contact the merchant or regulated lender first. State the transaction date, amount, expected term, actual charge and exact remedy requested.",
         visual: {
-          src: "/visuals/complaint-escalation.png",
+          src: "/visuals/complaint-escalation.webp?v=1",
           alt: "Complaint escalation path: gather evidence, complain to lender, escalate to RBI CMS or NCH 1915, obtain written outcome.",
           caption: "Gather your evidence first, then complain to the lender, then escalate to RBI CMS or NCH if unresolved.",
         },

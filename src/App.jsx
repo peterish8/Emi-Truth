@@ -15,6 +15,7 @@ import {
   moduleQuizzes,
   officialSources,
 } from "./learnData";
+import { ADSENSE_CLIENT, ADSENSE_SLOTS, hasAdSlot } from "./adsense";
 
 const formatInr = (value, maximumFractionDigits = 0) =>
   new Intl.NumberFormat("en-IN", {
@@ -65,7 +66,7 @@ function Header({ learn = false }) {
     <CornerTriangles corners="tl-br" className="header-triangles" />
     <header className="site-header">
       <a className="wordmark" href="/" aria-label="EMI Truth home">
-        <img src="/logo.jpeg" alt="EMI Truth" className="site-logo" />
+        <img src="/logo.webp?v=1" alt="EMI Truth" className="site-logo" width="48" height="48" />
         <span>EMI Truth</span>
       </a>
       <nav aria-label="Main navigation">
@@ -504,13 +505,13 @@ function HomePage() {
               <HeroCornerDots corner="tr" />
               <HeroCornerDots corner="bl" />
               <h1>
-                Is it actually
+                Calculate your
                 <br />
-                <em>no-cost?</em>
+                <em>real EMI cost.</em>
               </h1>
               <p>
-                Type the price, pick the plan. We show the real total: interest,
-                GST, processing fee and the cash discount you lose.
+                Interest, GST, fees and the cash discount you lose — in one
+                number.
               </p>
             </div>
             <ExamplePicker
@@ -593,8 +594,12 @@ function HomePage() {
           <div className="resource-content">
             <a className="book-cover-link" href="/comics/the-no-cost-trap">
               <img
-                src="/books/the-no-cost-trap/cover.png?v=2"
+                src="/books/the-no-cost-trap/cover.webp?v=3"
                 alt="The No-Cost Trap, a Mira Money Story comic cover"
+                width="1024"
+                height="1536"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <div className="resource-copy">
@@ -766,7 +771,7 @@ function SiteFooter({ tagline }) {
       <div className="footer-inner">
         <div className="footer-col footer-col-brand" data-reveal style={{ transitionDelay: "0ms" }}>
           <a href="/" className="footer-logo-link" aria-label="EMI Truth home">
-            <img src="/logo.jpeg" alt="EMI Truth" className="footer-logo-img" />
+            <img src="/logo.webp?v=1" alt="EMI Truth" className="footer-logo-img" width="48" height="48" loading="lazy" decoding="async" />
           </a>
           <p className="footer-tagline">{tagline}</p>
           <span className="footer-sub">Free. No login. No catch.</span>
@@ -800,24 +805,101 @@ function SiteFooter({ tagline }) {
   );
 }
 
-function AdSlot({ side = false, reader = false }) {
-  if (reader) {
-    return (
-      <aside className="ad-slot-reader">
-        {/* 300×600 Half Page — swap for AdSense <ins> when publisher ID is ready */}
-        <div className="ad-unit ad-unit-halfpage">
-          <span>ADVERTISEMENT</span>
-          <p>300 × 600</p>
-        </div>
-      </aside>
-    );
-  }
+function AdSenseIns({ slotId, className, insClassName = "", style, format, responsive }) {
+  const insRef = useRef(null);
+
+  useEffect(() => {
+    if (!hasAdSlot(slotId) || !insRef.current) return;
+    if (insRef.current.getAttribute("data-adsbygoogle-status")) return;
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (error) {
+      console.error("AdSense load failed", error);
+    }
+  }, [slotId]);
+
+  if (!hasAdSlot(slotId)) return null;
+
   return (
-    <aside className={side ? "ad-slot ad-slot-side" : "ad-slot"}>
-      <span>ADVERTISEMENT</span>
-      <p>Reserved for a relevant, non-intrusive ad.</p>
+    <aside className={className}>
+      <ins
+        ref={insRef}
+        className={`adsbygoogle ${insClassName}`.trim()}
+        style={style}
+        data-ad-client={ADSENSE_CLIENT}
+        data-ad-slot={slotId}
+        data-ad-format={format}
+        {...(responsive ? { "data-full-width-responsive": "true" } : {})}
+      />
     </aside>
   );
+}
+
+function AdSlotPlaceholder({ variant, className }) {
+  const copy = {
+    reader: { label: "ADVERTISEMENT", size: "300 × 600" },
+    side: { label: "ADVERTISEMENT", size: "Sidebar · 300 × 250" },
+    content: { label: "ADVERTISEMENT", size: "In-content · responsive" },
+  }[variant];
+
+  return (
+    <aside className={`${className} ad-slot-placeholder`} aria-hidden="true">
+      <div className={`ad-unit ad-unit-${variant === "reader" ? "halfpage" : "placeholder"}`}>
+        <span>{copy.label}</span>
+        <p>{copy.size}</p>
+      </div>
+    </aside>
+  );
+}
+
+function AdSlot({ side = false, reader = false }) {
+  if (reader) {
+    const slotId = ADSENSE_SLOTS.readerHalf;
+    if (hasAdSlot(slotId)) {
+      return (
+        <AdSenseIns
+          slotId={slotId}
+          className="ad-slot-reader ad-slot-live"
+          insClassName="ad-ins-reader-half"
+          format="vertical"
+          style={{ display: "inline-block", width: "300px", height: "600px" }}
+        />
+      );
+    }
+    return <AdSlotPlaceholder variant="reader" className="ad-slot-reader" />;
+  }
+
+  if (side) {
+    const slotId = ADSENSE_SLOTS.sidebar;
+    if (hasAdSlot(slotId)) {
+      return (
+        <AdSenseIns
+          slotId={slotId}
+          className="ad-slot ad-slot-side ad-slot-live"
+          insClassName="ad-ins-sidebar"
+          format="auto"
+          responsive
+          style={{ display: "block", minHeight: "250px" }}
+        />
+      );
+    }
+    return <AdSlotPlaceholder variant="side" className="ad-slot ad-slot-side" />;
+  }
+
+  const slotId = ADSENSE_SLOTS.inContent;
+  if (hasAdSlot(slotId)) {
+    return (
+      <AdSenseIns
+        slotId={slotId}
+        className="ad-slot ad-slot-live"
+        insClassName="ad-ins-content"
+        format="auto"
+        responsive
+        style={{ display: "block", minHeight: "90px" }}
+      />
+    );
+  }
+  return <AdSlotPlaceholder variant="content" className="ad-slot" />;
 }
 
 function LearnPage() {
@@ -1196,20 +1278,23 @@ function ModuleQuiz({ questions, moduleTitle, next }) {
   );
 }
 
+const comicPages = [
+  ["cover.webp", "The No-Cost Trap comic cover."],
+  ["page-01.webp", "A shopkeeper offers Mira a no-cost EMI laptop."],
+  ["page-02.webp", "Mira stops the checkout and asks for every offer detail."],
+  ["page-03.webp", "Mira explains principal, tenure, monthly EMI and interest."],
+  ["page-04.webp", "Mira discovers the cash discount lost with EMI."],
+  ["page-05.webp", "The shopkeeper reveals the processing fee."],
+  ["page-06.webp", "Mira explains GST on fees and EMI interest."],
+  ["page-07.webp", "Mira calculates the complete cost of the EMI offer."],
+  ["page-08.webp", "The full comparison reveals the no-cost EMI costs more."],
+  ["page-09.webp", "The shopkeeper is stunned that Mira found the hidden cost."],
+  ["page-10.webp", "Mira's six-question checklist for every EMI offer."],
+];
+const comicAsset = (file) => `/books/the-no-cost-trap/${file}?v=3`;
+
 function ComicPage() {
-  const pages = [
-    ["cover.png", "The No-Cost Trap comic cover."],
-    ["page-01.png", "A shopkeeper offers Mira a no-cost EMI laptop."],
-    ["page-02.png", "Mira stops the checkout and asks for every offer detail."],
-    ["page-03.png", "Mira explains principal, tenure, monthly EMI and interest."],
-    ["page-04.png", "Mira discovers the cash discount lost with EMI."],
-    ["page-05.png", "The shopkeeper reveals the processing fee."],
-    ["page-06.png", "Mira explains GST on fees and EMI interest."],
-    ["page-07.png", "Mira calculates the complete cost of the EMI offer."],
-    ["page-08.png", "The full comparison reveals the no-cost EMI costs more."],
-    ["page-09.png", "The shopkeeper is stunned that Mira found the hidden cost."],
-    ["page-10.png", "Mira's six-question checklist for every EMI offer."],
-  ];
+  const pages = comicPages;
   const glossary = [
     ["Principal", "The amount you actually borrow or finance."],
     ["Interest", "The lender’s charge for letting you repay over time."],
@@ -1255,6 +1340,18 @@ function ComicPage() {
   const flipIndex = 0;
   const pageFlipClass = () =>
     animPhase === "idle" ? "" : ` flipping-${animPhase}`;
+
+  useEffect(() => {
+    const nearby = [
+      comicPages[pageIndex - 1],
+      comicPages[pageIndex + 1],
+    ].filter(Boolean);
+    nearby.forEach(([file]) => {
+      const image = new Image();
+      image.src = comicAsset(file);
+      image.decode?.().catch(() => {});
+    });
+  }, [pageIndex]);
 
   return (
     <>
@@ -1330,9 +1427,9 @@ function ComicPage() {
                     onAnimationEnd={index === flipIndex && animPhase !== "idle" ? handleAnimEnd : undefined}
                     key={file}
                   >
-                    <img src={`/books/the-no-cost-trap/${file}`} alt={alt} loading="lazy" decoding="async" />
+                    <img src={comicAsset(file)} alt={alt} loading="eager" decoding="async" fetchPriority="high" />
                     <span>
-                      {file === "cover.png"
+                      {file === "cover.webp"
                         ? "COVER"
                         : `PAGE ${String(pageIndex).padStart(2, "0")}`}
                     </span>
@@ -1340,7 +1437,7 @@ function ComicPage() {
                 ))}
                 {incomingPage ? (
                   <article className="reader-page reader-page-incoming" aria-hidden="true">
-                    <img src={`/books/the-no-cost-trap/${incomingPage[0]}`} alt="" decoding="async" />
+                    <img src={comicAsset(incomingPage[0])} alt="" decoding="async" />
                   </article>
                 ) : null}
                 <button
