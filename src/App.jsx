@@ -3,6 +3,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   calculateEmi,
+  findMatchingPreset,
+  offerPresets,
   readInputsFromUrl,
   toShareUrl,
 } from "./calculator";
@@ -210,10 +212,24 @@ function CostComposition({ result }) {
 function HomePage() {
   const [inputs, setInputs] = useState(readInputsFromUrl);
   const [copied, setCopied] = useState(false);
+  const [activePreset, setActivePreset] = useState(
+    () => findMatchingPreset(readInputsFromUrl())?.id ?? "",
+  );
   const result = useMemo(() => calculateEmi(inputs), [inputs]);
+  const activePresetNote = offerPresets.find((preset) => preset.id === activePreset)?.note;
 
   const updateInput = (key, value) => {
-    setInputs((current) => ({ ...current, [key]: value }));
+    setInputs((current) => {
+      const next = { ...current, [key]: value };
+      setActivePreset(findMatchingPreset(next)?.id ?? "");
+      return next;
+    });
+    setCopied(false);
+  };
+
+  const applyPreset = (preset) => {
+    setInputs(preset.inputs);
+    setActivePreset(preset.id);
     setCopied(false);
   };
 
@@ -254,6 +270,29 @@ function HomePage() {
               <span className="figure-label">INPUT / OFFER DETAILS</span>
               <span>Free · no login · calculated on your device</span>
             </div>
+            <div className="example-row">
+              <div>
+                <span className="input-label">Try an example</span>
+                <span className="input-hint">Tap to load numbers</span>
+              </div>
+              <div className="example-options" aria-label="Example offers">
+                {offerPresets.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className={activePreset === preset.id ? "active" : ""}
+                    onClick={() => applyPreset(preset)}
+                    aria-pressed={activePreset === preset.id}
+                  >
+                    <span>{preset.label}</span>
+                    <small>{preset.detail}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+            {activePresetNote ? (
+              <p className="example-note">{activePresetNote}</p>
+            ) : null}
             <div className="input-grid">
               {fields.slice(0, 3).map((field) => (
                 <NumberInput
