@@ -529,11 +529,6 @@ function AdSlot({ side = false, reader = false }) {
           <span>ADVERTISEMENT</span>
           <p>300 × 600</p>
         </div>
-        {/* 300×250 Medium Rectangle */}
-        <div className="ad-unit ad-unit-mrec">
-          <span>ADVERTISEMENT</span>
-          <p>300 × 250</p>
-        </div>
       </aside>
     );
   }
