@@ -1,82 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 340" role="img" aria-label="EMI Truth premium banner">
-  <defs>
-    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a3d2f"/>
-      <stop offset="45%" stop-color="#0f5c40"/>
-      <stop offset="100%" stop-color="#16794b"/>
-    </linearGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#7dffc8"/>
-      <stop offset="100%" stop-color="#b8f5d4"/>
-    </linearGradient>
-    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ff8a72"/>
-      <stop offset="100%" stop-color="#e84a2f"/>
-    </linearGradient>
-    <filter id="logoGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="12" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="EMI Truth dark banner panel">
+  <!-- Text-only panel. Real logo is rendered via README HTML (GitHub blocks images inside SVG). -->
+  <rect width="1200" height="300" rx="20" fill="#111411"/>
+  <rect x="0" y="0" width="5" height="300" rx="2" fill="#16794b"/>
 
-  <!-- Premium shell -->
-  <rect width="1200" height="340" rx="28" fill="#f8faf8"/>
-  <rect x="1" y="1" width="1198" height="338" rx="27" fill="url(#hero)"/>
-  <rect x="1" y="1" width="1198" height="160" rx="27" fill="url(#shine)"/>
+  <text x="48" y="88" fill="#f1f3f1" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="52" font-weight="900" letter-spacing="-2">EMI Truth</text>
+  <text x="50" y="124" fill="#9aa39c" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="18" font-weight="500">See what no-cost really costs — before you checkout</text>
 
-  <!-- Abstract arcs (not grid / not profile orb) -->
-  <path d="M820 20 C980 40, 1040 120, 1120 200" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/>
-  <path d="M900 0 C1080 60, 1140 160, 1180 280" fill="none" stroke="#7dffc8" stroke-opacity="0.12" stroke-width="3"/>
-  <circle cx="1040" cy="88" r="120" fill="#ffffff" opacity="0.03"/>
-  <circle cx="1080" cy="240" r="80" fill="#e84a2f" opacity="0.06"/>
+  <rect x="48" y="142" width="96" height="3" rx="1.5" fill="#16794b"/>
+  <rect x="152" y="142" width="220" height="3" rx="1.5" fill="#2d332d"/>
 
-  <!-- Logo lockup (inline vector — GitHub strips external images inside README SVGs) -->
-  <g filter="url(#logoGlow)">
-    <rect x="52" y="68" width="156" height="156" rx="34" fill="#ffffff" opacity="0.08"/>
-    <rect x="56" y="72" width="148" height="148" rx="32" fill="#004d40" stroke="url(#accent)" stroke-width="2"/>
-    <g transform="translate(130, 146)" fill="none" stroke="#d8f5e4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-18 10h34" stroke-width="5"/>
-      <path d="M-10 2v16" stroke-width="5"/>
-      <path d="M-2 2c10 0 18 8 18 18s-8 18-18 18" stroke-width="5"/>
-      <path d="M10 30l12 12" stroke-width="5"/>
-      <path d="M-18-10c0-8 6-14 14-14" stroke-width="5"/>
-    </g>
+  <g transform="translate(48, 168)">
+    <rect width="200" height="52" rx="12" fill="#151815" stroke="#2d332d" stroke-width="1"/>
+    <text x="16" y="20" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">CALCULATOR</text>
+    <text x="16" y="38" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">Cash vs true EMI total</text>
+  </g>
+  <g transform="translate(264, 168)">
+    <rect width="200" height="52" rx="12" fill="#151815" stroke="#2d332d" stroke-width="1"/>
+    <text x="16" y="20" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">ACADEMY</text>
+    <text x="16" y="38" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">8 guided modules + quizzes</text>
+  </g>
+  <g transform="translate(480, 168)">
+    <rect width="200" height="52" rx="12" fill="#151815" stroke="#2d332d" stroke-width="1"/>
+    <text x="16" y="20" fill="#e84a2f" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">COMIC</text>
+    <text x="16" y="38" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">The No-Cost Trap · PDF</text>
   </g>
 
-  <!-- Wordmark block -->
-  <text x="240" y="118" fill="#ffffff" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="58" font-weight="900" letter-spacing="-2">EMI Truth</text>
-  <text x="242" y="156" fill="#b8f5d4" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="18" font-weight="500">See what no-cost really costs — before you checkout</text>
-
-  <!-- Accent rule -->
-  <rect x="240" y="176" width="120" height="4" rx="2" fill="url(#warm)"/>
-  <rect x="368" y="176" width="280" height="4" rx="2" fill="#ffffff" opacity="0.18"/>
-
-  <!-- Metric strip -->
-  <g transform="translate(240, 204)">
-    <rect width="188" height="54" rx="14" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.16"/>
-    <text x="18" y="22" fill="#b8f5d4" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.4">CALCULATOR</text>
-    <text x="18" y="42" fill="#ffffff" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="700">Cash vs true EMI total</text>
-  </g>
-  <g transform="translate(444, 204)">
-    <rect width="188" height="54" rx="14" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.16"/>
-    <text x="18" y="22" fill="#b8f5d4" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.4">ACADEMY</text>
-    <text x="18" y="42" fill="#ffffff" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="700">8 guided modules + quizzes</text>
-  </g>
-  <g transform="translate(648, 204)">
-    <rect width="188" height="54" rx="14" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.16"/>
-    <text x="18" y="22" fill="#ffd0c6" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.4">COMIC</text>
-    <text x="18" y="42" fill="#ffffff" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="700">The No-Cost Trap · PDF</text>
-  </g>
-
-  <!-- Bottom ribbon -->
-  <rect x="0" y="286" width="1200" height="54" rx="0" fill="#ffffff" opacity="0.96"/>
-  <rect x="56" y="302" width="10" height="22" rx="3" fill="#16794b"/>
-  <text x="78" y="318" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="700">India-first</text>
-  <text x="200" y="318" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="500">GST · fees · interest · lost cash discounts</text>
-  <text x="980" y="318" text-anchor="end" fill="#16794b" font-family="ui-monospace, monospace" font-size="12" font-weight="700">emitruth.in</text>
+  <rect x="0" y="248" width="1200" height="52" fill="#0d0f0d"/>
+  <text x="48" y="280" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="700">India-first</text>
+  <text x="148" y="280" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="13">GST · fees · interest · lost cash discounts</text>
+  <text x="1152" y="280" text-anchor="end" fill="#16794b" font-family="ui-monospace, monospace" font-size="12" font-weight="700">emitruth.in</text>
 </svg>

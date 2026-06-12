@@ -1,5 +1,29 @@
 <p align="center">
-  <img src="assets/readme/banner.svg?v=2" alt="EMI Truth — true no-cost EMI calculator for India" width="100%"/>
+  <a href="https://www.emitruth.in">
+    <table cellpadding="0" cellspacing="0" style="max-width: 920px; border-collapse: collapse; border: 1px solid #2d332d; border-radius: 20px; overflow: hidden;">
+      <tr>
+        <td bgcolor="#111411" align="center" valign="middle" width="168" style="padding: 32px 20px 32px 28px; border-left: 4px solid #16794b;">
+          <img src="assets/readme/logo.jpeg" alt="EMI Truth logo" width="128" height="128" style="border-radius: 24px; display: block;"/>
+        </td>
+        <td bgcolor="#111411" valign="middle" style="padding: 32px 36px 24px 8px; text-align: left;">
+          <h1 style="margin: 0; color: #f1f3f1; font-family: system-ui, -apple-system, Segoe UI, sans-serif; font-size: 44px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;">EMI Truth</h1>
+          <p style="margin: 10px 0 18px; color: #9aa39c; font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.4;">See what no-cost really costs — before you checkout</p>
+          <p style="margin: 0;">
+            <span style="display: inline-block; margin: 0 8px 8px 0; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px;"><strong style="color: #16794b;">CALCULATOR</strong><br/>Cash vs true EMI total</span>
+            <span style="display: inline-block; margin: 0 8px 8px 0; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px;"><strong style="color: #16794b;">ACADEMY</strong><br/>8 guided modules + quizzes</span>
+            <span style="display: inline-block; margin: 0 0 8px 0; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px;"><strong style="color: #e84a2f;">COMIC</strong><br/>The No-Cost Trap · PDF</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" bgcolor="#0d0f0d" style="padding: 14px 28px; text-align: left;">
+          <span style="color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 13px; font-weight: 700;">India-first</span>
+          <span style="color: #656a66; font-family: system-ui, sans-serif; font-size: 13px; margin-left: 16px;">GST · fees · interest · lost cash discounts</span>
+          <span style="float: right; color: #16794b; font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700;">emitruth.in</span>
+        </td>
+      </tr>
+    </table>
+  </a>
 </p>
 
 <p align="center">
@@ -172,7 +196,7 @@ graph LR
 Emi-Truth/
 ├── assets/readme/              # README SVG visuals + logo
 │   ├── logo.jpeg               # Brand mark (₹ + lens)
-│   ├── banner.svg              # Premium hero banner
+│   ├── banner.svg              # Dark hero text panel (logo in README HTML)
 │   ├── features.svg            # 4-card feature overview
 │   ├── academy.svg             # 8-module grid
 │   ├── calculator-breakdown.svg
@@ -250,5 +274,22 @@ Educational content only — **not financial advice**. Always verify offer terms
 ---
 
 <p align="center">
-  <img src="assets/readme/footer.svg?v=2" alt="EMI Truth footer" width="700"/>
+  <a href="https://www.emitruth.in">
+    <table cellpadding="0" cellspacing="0" style="max-width: 700px; border-collapse: collapse; border: 1px solid #2d332d; border-radius: 16px; overflow: hidden;">
+      <tr>
+        <td bgcolor="#111411" align="center" valign="middle" width="96" style="padding: 18px 12px 18px 20px; border-left: 4px solid #16794b;">
+          <img src="assets/readme/logo.jpeg" alt="EMI Truth logo" width="68" height="68" style="border-radius: 14px; display: block;"/>
+        </td>
+        <td bgcolor="#111411" valign="middle" style="padding: 18px 24px 18px 8px; text-align: left;">
+          <strong style="color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 20px;">EMI Truth</strong><br/>
+          <span style="color: #9aa39c; font-family: system-ui, sans-serif; font-size: 12px;">Small stories · Better money decisions</span><br/>
+          <span style="color: #656a66; font-family: system-ui, sans-serif; font-size: 10px;">Educational only — not financial advice</span>
+        </td>
+        <td bgcolor="#151815" align="center" valign="middle" style="padding: 18px 20px; border-left: 1px solid #2d332d;">
+          <span style="color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.6px;">VISIT SITE</span><br/>
+          <span style="color: #16794b; font-family: ui-monospace, monospace; font-size: 11px; font-weight: 700;">emitruth.in</span>
+        </td>
+      </tr>
+    </table>
+  </a>
 </p>
