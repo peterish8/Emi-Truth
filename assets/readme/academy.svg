@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" role="img" aria-label="EMI Truth academy modules">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#1d8f5c"/><stop offset="1" stop-color="#16794b"/></linearGradient>
+    <linearGradient id="r" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ff6b4f"/><stop offset="1" stop-color="#e84a2f"/></linearGradient>
+  </defs>
+  <rect width="900" height="200" rx="16" fill="#f8faf8" stroke="#cfd3cf"/>
+  <text x="32" y="36" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="16" font-weight="800">Consumer EMI Academy — 8 modules</text>
+  <text x="32" y="56" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="11">Each module: key terms · sections · visuals · analogy · summary · quiz</text>
+
+  <!-- row 1 -->
+  <g font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700">
+    <rect x="32" y="72" width="198" height="48" rx="10" fill="#fff" stroke="#111411"/><text x="48" y="92" fill="#16794b">01</text><text x="72" y="92" fill="#111411">EMI fundamentals</text><text x="48" y="108" fill="#656a66" font-weight="500">Principal · tenure · amortization</text>
+    <rect x="242" y="72" width="198" height="48" rx="10" fill="#fff" stroke="#16794b"/><text x="258" y="92" fill="#16794b">02</text><text x="282" y="92" fill="#111411">No-cost EMI decoded</text><text x="258" y="108" fill="#656a66" font-weight="500">Cash vs EMI discount trap</text>
+    <rect x="452" y="72" width="198" height="48" rx="10" fill="#fff" stroke="#111411"/><text x="468" y="92" fill="#16794b">03</text><text x="492" y="92" fill="#111411">GST &amp; fees</text><text x="468" y="108" fill="#656a66" font-weight="500">Statement line items</text>
+    <rect x="662" y="72" width="206" height="48" rx="10" fill="#fff" stroke="#111411"/><text x="678" y="92" fill="#16794b">04</text><text x="702" y="92" fill="#111411">Credit-card EMI</text><text x="678" y="108" fill="#656a66" font-weight="500">Limit block · missed payments</text>
+  </g>
+  <!-- row 2 -->
+  <g font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700">
+    <rect x="32" y="132" width="198" height="48" rx="10" fill="#fff" stroke="#111411"/><text x="48" y="152" fill="#16794b">05</text><text x="72" y="152" fill="#111411">Loan EMI &amp; prepayment</text><text x="48" y="168" fill="#656a66" font-weight="500">Fixed vs floating · early pay</text>
+    <rect x="242" y="132" width="198" height="48" rx="10" fill="#fff" stroke="#e84a2f"/><text x="258" y="152" fill="#e84a2f">06</text><text x="282" y="152" fill="#111411">Scams &amp; dark patterns</text><text x="258" y="168" fill="#656a66" font-weight="500">Checkout red flags</text>
+    <rect x="452" y="132" width="198" height="48" rx="10" fill="#fff" stroke="#111411"/><text x="468" y="152" fill="#16794b">07</text><text x="492" y="152" fill="#111411">Checkout checklist</text><text x="468" y="168" fill="#656a66" font-weight="500">5-step verification</text>
+    <rect x="662" y="132" width="206" height="48" rx="10" fill="#fff" stroke="#16794b"/><text x="678" y="152" fill="#16794b">08</text><text x="702" y="152" fill="#111411">Consumer rights</text><text x="678" y="168" fill="#656a66" font-weight="500">Complaint escalation</text>
+  </g>
+</svg>

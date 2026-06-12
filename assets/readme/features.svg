@@ -1,55 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 220" role="img" aria-label="EMI Truth features">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 230" role="img" aria-label="EMI Truth features">
   <defs>
-    <linearGradient id="cardA" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d8f5c"/>
+      <stop offset="100%" stop-color="#16794b"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff6b4f"/>
+      <stop offset="100%" stop-color="#e84a2f"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="100%" stop-color="#f1f3f1"/>
     </linearGradient>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#1d8f5c"/><stop offset="1" stop-color="#16794b"/></linearGradient>
-    <linearGradient id="r" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ff6b4f"/><stop offset="1" stop-color="#e84a2f"/></linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
-  <rect width="1100" height="220" rx="18" fill="#f8faf8" stroke="#cfd3cf"/>
-  <!-- Calculator -->
-  <g transform="translate(40,36)">
-    <rect width="230" height="148" rx="16" fill="url(#cardA)" stroke="#111411" stroke-width="1.2"/>
-    <rect x="18" y="18" width="64" height="64" rx="14" fill="url(#g)"/>
-    <rect x="30" y="34" width="40" height="8" rx="4" fill="#fff" opacity="0.9"/>
-    <rect x="30" y="48" width="28" height="6" rx="3" fill="#fff" opacity="0.55"/>
-    <rect x="30" y="58" width="18" height="6" rx="3" fill="#e84a2f" opacity="0.9"/>
-    <text x="96" y="44" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="18" font-weight="800">Calculator</text>
-    <text x="18" y="108" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Cash vs EMI · GST · fees</text>
-    <text x="18" y="128" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Shareable result URLs</text>
+
+  <!-- Card 1 · Calculator -->
+  <g transform="translate(20, 15)">
+    <rect width="250" height="200" rx="20" fill="url(#card)" stroke="#111411" stroke-width="1.5"/>
+    <g transform="translate(125, 62)">
+      <rect x="-42" y="12" width="18" height="36" rx="4" fill="#151815"/>
+      <rect x="-18" y="0" width="18" height="48" rx="4" fill="url(#green)"/>
+      <rect x="6" y="18" width="18" height="30" rx="4" fill="#777e78"/>
+      <rect x="30" y="24" width="18" height="24" rx="4" fill="url(#red)"/>
+      <text x="0" y="-18" text-anchor="middle" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="9" font-weight="700">CASH vs EMI</text>
+    </g>
+    <text x="125" y="122" text-anchor="middle" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="14" font-weight="800">True Calculator</text>
+    <text x="125" y="142" text-anchor="middle" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="11">GST · fees · lost cash discount</text>
+    <rect x="77" y="162" width="96" height="5" rx="2.5" fill="#e8ece8"/>
+    <rect x="77" y="162" width="72" height="5" rx="2.5" fill="url(#green)"/>
   </g>
-  <!-- Academy -->
-  <g transform="translate(300,36)">
-    <rect width="230" height="148" rx="16" fill="url(#cardA)" stroke="#16794b" stroke-width="1.2"/>
-    <circle cx="50" cy="50" r="32" fill="#eef7f1" stroke="#16794b" stroke-width="2"/>
-    <text x="50" y="58" text-anchor="middle" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="22" font-weight="900">8</text>
-    <text x="96" y="44" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="18" font-weight="800">Academy</text>
-    <text x="18" y="108" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Lessons · quizzes · visuals</text>
-    <text x="18" y="128" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Official source links</text>
+
+  <!-- Card 2 · Academy -->
+  <g transform="translate(285, 15)">
+    <rect width="250" height="200" rx="20" fill="url(#card)" stroke="#16794b" stroke-width="1.5"/>
+    <circle cx="125" cy="68" r="34" fill="#eef7f1" stroke="url(#green)" stroke-width="2.5"/>
+    <text x="125" y="76" text-anchor="middle" fill="url(#green)" font-family="Segoe UI, Manrope, sans-serif" font-size="28" font-weight="900">8</text>
+    <text x="125" y="122" text-anchor="middle" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="14" font-weight="800">Consumer Academy</text>
+    <text x="125" y="142" text-anchor="middle" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="11">Lessons · visuals · quizzes</text>
+    <text x="125" y="180" text-anchor="middle" fill="url(#green)" font-family="Segoe UI, Manrope, sans-serif" font-size="11" font-weight="800" letter-spacing="1.2">8–9 MIN READS</text>
   </g>
-  <!-- Comic -->
-  <g transform="translate(560,36)">
-    <rect width="230" height="148" rx="16" fill="url(#cardA)" stroke="#e84a2f" stroke-width="1.2"/>
-    <rect x="22" y="22" width="34" height="56" rx="4" fill="#fff" stroke="#111411" stroke-width="1.5"/>
-    <rect x="60" y="22" width="34" height="56" rx="4" fill="#f1f3f1" stroke="#111411" stroke-width="1.5"/>
-    <rect x="28" y="30" width="10" height="10" rx="2" fill="url(#g)"/>
-    <rect x="66" y="30" width="10" height="10" rx="2" fill="url(#r)"/>
-    <text x="96" y="44" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="18" font-weight="800">Comic</text>
-    <text x="18" y="108" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">The No-Cost Trap with Mira</text>
-    <text x="18" y="128" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Online reader + PDF download</text>
+
+  <!-- Card 3 · Comic -->
+  <g transform="translate(550, 15)">
+    <rect width="250" height="200" rx="20" fill="url(#card)" stroke="#e84a2f" stroke-width="1.5"/>
+    <rect x="93" y="38" width="30" height="52" rx="3" fill="#fff" stroke="#111411" stroke-width="1.5"/>
+    <rect x="127" y="38" width="30" height="52" rx="3" fill="#f1f3f1" stroke="#111411" stroke-width="1.5"/>
+    <rect x="99" y="46" width="8" height="8" rx="1" fill="url(#green)"/>
+    <rect x="133" y="46" width="8" height="8" rx="1" fill="url(#red)"/>
+    <text x="125" y="122" text-anchor="middle" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="14" font-weight="800">The No-Cost Trap</text>
+    <text x="125" y="142" text-anchor="middle" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="11">Portrait comic · page-flip reader</text>
+    <rect x="83" y="162" width="84" height="20" rx="10" fill="#fff" stroke="#111411"/>
+    <text x="125" y="176" text-anchor="middle" fill="#111411" font-family="ui-monospace, monospace" font-size="9" font-weight="700">PDF ↓</text>
   </g>
-  <!-- Palette -->
-  <g transform="translate(820,36)">
-    <rect width="240" height="148" rx="16" fill="url(#cardA)" stroke="#cfd3cf" stroke-width="1.2"/>
-    <text x="18" y="36" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="18" font-weight="800">Theme</text>
-    <rect x="18" y="52" width="36" height="18" rx="5" fill="#111411"/>
-    <rect x="60" y="52" width="36" height="18" rx="5" fill="#16794b"/>
-    <rect x="102" y="52" width="36" height="18" rx="5" fill="#e84a2f"/>
-    <rect x="144" y="52" width="36" height="18" rx="5" fill="#656a66"/>
-    <rect x="186" y="52" width="36" height="18" rx="5" fill="#f1f3f1" stroke="#cfd3cf"/>
-    <text x="18" y="98" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Ink · Green · Red · Muted · Soft</text>
-    <text x="18" y="118" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="12">Manrope + DM Mono typography</text>
+
+  <!-- Card 4 · Share URLs -->
+  <g transform="translate(815, 15)" filter="url(#glow)">
+    <rect width="250" height="200" rx="20" fill="url(#card)" stroke="rgba(22,121,75,0.35)" stroke-width="1.5"/>
+    <g transform="translate(125, 68)">
+      <rect x="-48" y="-12" width="96" height="24" rx="8" fill="#fff" stroke="#cfd3cf" stroke-width="1.5"/>
+      <text x="0" y="5" text-anchor="middle" fill="#16794b" font-family="ui-monospace, monospace" font-size="9" font-weight="700">?price=59900</text>
+      <path d="M-16 18 L0 30 L16 18" fill="none" stroke="url(#green)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="0" cy="38" r="10" fill="url(#green)"/>
+      <path d="M-5 38 L-1 42 L7 34" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <text x="125" y="130" text-anchor="middle" fill="#111411" font-family="Segoe UI, Manrope, sans-serif" font-size="14" font-weight="800">Shareable Results</text>
+    <text x="125" y="150" text-anchor="middle" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="11">URL-encoded calculator state</text>
+    <text x="125" y="176" text-anchor="middle" fill="url(#green)" font-family="Segoe UI, Manrope, sans-serif" font-size="11" font-weight="800" letter-spacing="1.2">NO LOGIN</text>
   </g>
 </svg>
