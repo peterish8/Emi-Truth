@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme/banner.svg" alt="EMI Truth — true no-cost EMI calculator for India" width="100%"/>
+  <img src="assets/readme/banner.svg?v=2" alt="EMI Truth — true no-cost EMI calculator for India" width="100%"/>
 </p>
 
 <p align="center">
@@ -250,5 +250,5 @@ Educational content only — **not financial advice**. Always verify offer terms
 ---
 
 <p align="center">
-  <img src="assets/readme/footer.svg" alt="EMI Truth footer" width="700"/>
+  <img src="assets/readme/footer.svg?v=2" alt="EMI Truth footer" width="700"/>
 </p>

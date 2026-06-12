@@ -6,18 +6,21 @@
       <stop offset="50%" stop-color="#16794b"/>
       <stop offset="100%" stop-color="#0f5c40"/>
     </linearGradient>
-    <clipPath id="logoClip">
-      <rect x="28" y="20" width="80" height="80" rx="18"/>
-    </clipPath>
   </defs>
 
   <!-- Horizontal premium bar (different from centered profile footer) -->
   <rect width="900" height="120" rx="20" fill="#f8faf8" stroke="#cfd3cf" stroke-width="1"/>
   <rect x="1" y="1" width="898" height="118" rx="19" fill="url(#bar)"/>
 
-  <!-- Logo left -->
-  <rect x="24" y="16" width="88" height="88" rx="20" fill="#0a3d2f" stroke="#b8f5d4" stroke-width="1.5" stroke-opacity="0.5"/>
-  <image href="logo.jpeg" x="28" y="20" width="80" height="80" clip-path="url(#logoClip)" preserveAspectRatio="xMidYMid slice"/>
+  <!-- Logo left (inline vector) -->
+  <rect x="24" y="16" width="88" height="88" rx="20" fill="#004d40" stroke="#b8f5d4" stroke-width="1.5" stroke-opacity="0.5"/>
+  <g transform="translate(68, 60)" fill="none" stroke="#d8f5e4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-10 6h20" stroke-width="3.2"/>
+    <path d="M-5 1v10" stroke-width="3.2"/>
+    <path d="M0 1c6 0 11 5 11 11s-5 11-11 11" stroke-width="3.2"/>
+    <path d="M7 19l7 7" stroke-width="3.2"/>
+    <path d="M-10-6c0-5 4-9 9-9" stroke-width="3.2"/>
+  </g>
 
   <!-- Copy center -->
   <text x="140" y="52" fill="#ffffff" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="22" font-weight="900" letter-spacing="-0.5">EMI Truth</text>
