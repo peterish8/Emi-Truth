@@ -2,32 +2,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="EMI Truth dark banner panel">
   <!-- Text-only panel. Real logo is rendered via README HTML (GitHub blocks images inside SVG). -->
   <rect width="1200" height="300" rx="20" fill="#111411"/>
-  <rect x="0" y="0" width="5" height="300" rx="2" fill="#16794b"/>
+  <rect x="597.5" y="0" width="5" height="300" rx="2.5" fill="#16794b"/>
 
-  <text x="48" y="88" fill="#f1f3f1" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="52" font-weight="900" letter-spacing="-2">EMI Truth</text>
-  <text x="50" y="124" fill="#9aa39c" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="18" font-weight="500">See what no-cost really costs — before you checkout</text>
+  <text x="600" y="88" text-anchor="middle" fill="#f1f3f1" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="52" font-weight="900" letter-spacing="-2">EMI Truth</text>
+  <text x="600" y="124" text-anchor="middle" fill="#9aa39c" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="18" font-weight="500">See what no-cost really costs — before you checkout</text>
 
-  <rect x="48" y="142" width="96" height="3" rx="1.5" fill="#16794b"/>
-  <rect x="152" y="142" width="220" height="3" rx="1.5" fill="#2d332d"/>
+  <rect x="446" y="142" width="96" height="3" rx="1.5" fill="#16794b"/>
+  <rect x="552" y="142" width="96" height="3" rx="1.5" fill="#2d332d"/>
 
-  <g transform="translate(48, 168)">
+  <g transform="translate(284, 168)">
     <rect width="200" height="52" rx="12" fill="#151815" stroke="#2d332d" stroke-width="1"/>
-    <text x="16" y="20" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">CALCULATOR</text>
-    <text x="16" y="38" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">Cash vs true EMI total</text>
+    <text x="100" y="20" text-anchor="middle" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">CALCULATOR</text>
+    <text x="100" y="38" text-anchor="middle" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">Cash vs true EMI total</text>
   </g>
-  <g transform="translate(264, 168)">
+  <g transform="translate(500, 168)">
     <rect width="200" height="52" rx="12" fill="#151815" stroke="#2d332d" stroke-width="1"/>
-    <text x="16" y="20" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">ACADEMY</text>
-    <text x="16" y="38" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">8 guided modules + quizzes</text>
+    <text x="100" y="20" text-anchor="middle" fill="#16794b" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">ACADEMY</text>
+    <text x="100" y="38" text-anchor="middle" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">8 guided modules + quizzes</text>
   </g>
-  <g transform="translate(480, 168)">
+  <g transform="translate(716, 168)">
     <rect width="200" height="52" rx="12" fill="#151815" stroke="#2d332d" stroke-width="1"/>
-    <text x="16" y="20" fill="#e84a2f" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">COMIC</text>
-    <text x="16" y="38" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">The No-Cost Trap · PDF</text>
+    <text x="100" y="20" text-anchor="middle" fill="#e84a2f" font-family="Segoe UI, Manrope, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">COMIC</text>
+    <text x="100" y="38" text-anchor="middle" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="12" font-weight="600">The No-Cost Trap · PDF</text>
   </g>
 
   <rect x="0" y="248" width="1200" height="52" fill="#0d0f0d"/>
-  <text x="48" y="280" fill="#f1f3f1" font-family="Segoe UI, Manrope, sans-serif" font-size="13" font-weight="700">India-first</text>
-  <text x="148" y="280" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="13">GST · fees · interest · lost cash discounts</text>
-  <text x="1152" y="280" text-anchor="end" fill="#16794b" font-family="ui-monospace, monospace" font-size="12" font-weight="700">emitruth.in</text>
+  <text x="600" y="280" text-anchor="middle" fill="#656a66" font-family="Segoe UI, Manrope, sans-serif" font-size="13">
+    <tspan fill="#f1f3f1" font-weight="700">India-first</tspan>
+    <tspan dx="16">GST · fees · interest · lost cash discounts</tspan>
+    <tspan dx="16" fill="#16794b" font-family="ui-monospace, monospace" font-size="12" font-weight="700">emitruth.in</tspan>
+  </text>
 </svg>

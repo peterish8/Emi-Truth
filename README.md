@@ -1,30 +1,28 @@
-<p align="center">
+<div align="center">
   <a href="https://www.emitruth.in">
-    <table cellpadding="0" cellspacing="0" style="max-width: 920px; border-collapse: collapse; border: 1px solid #2d332d; border-radius: 20px; overflow: hidden;">
+    <table cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto; max-width: 920px; border-collapse: collapse; border: 1px solid #2d332d; border-radius: 20px; overflow: hidden;">
       <tr>
-        <td bgcolor="#111411" align="center" valign="middle" width="168" style="padding: 32px 20px 32px 28px; border-left: 4px solid #16794b;">
-          <img src="assets/readme/logo.jpeg" alt="EMI Truth logo" width="128" height="128" style="border-radius: 24px; display: block;"/>
-        </td>
-        <td bgcolor="#111411" valign="middle" style="padding: 32px 36px 24px 8px; text-align: left;">
-          <h1 style="margin: 0; color: #f1f3f1; font-family: system-ui, -apple-system, Segoe UI, sans-serif; font-size: 44px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;">EMI Truth</h1>
-          <p style="margin: 10px 0 18px; color: #9aa39c; font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.4;">See what no-cost really costs — before you checkout</p>
-          <p style="margin: 0;">
-            <span style="display: inline-block; margin: 0 8px 8px 0; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px;"><strong style="color: #16794b;">CALCULATOR</strong><br/>Cash vs true EMI total</span>
-            <span style="display: inline-block; margin: 0 8px 8px 0; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px;"><strong style="color: #16794b;">ACADEMY</strong><br/>8 guided modules + quizzes</span>
-            <span style="display: inline-block; margin: 0 0 8px 0; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px;"><strong style="color: #e84a2f;">COMIC</strong><br/>The No-Cost Trap · PDF</span>
+        <td bgcolor="#111411" align="center" style="padding: 36px 28px 28px; text-align: center; border-top: 4px solid #16794b;">
+          <img src="assets/readme/logo.jpeg" alt="EMI Truth logo" width="128" height="128" style="border-radius: 24px; display: block; margin: 0 auto 20px;"/>
+          <h1 style="margin: 0; color: #f1f3f1; font-family: system-ui, -apple-system, Segoe UI, sans-serif; font-size: 44px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; text-align: center;">EMI Truth</h1>
+          <p style="margin: 10px auto 20px; max-width: 520px; color: #9aa39c; font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.4; text-align: center;">See what no-cost really costs — before you checkout</p>
+          <p style="margin: 0; text-align: center;">
+            <span style="display: inline-block; margin: 0 6px 8px; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px; text-align: center;"><strong style="color: #16794b;">CALCULATOR</strong><br/>Cash vs true EMI total</span>
+            <span style="display: inline-block; margin: 0 6px 8px; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px; text-align: center;"><strong style="color: #16794b;">ACADEMY</strong><br/>8 guided modules + quizzes</span>
+            <span style="display: inline-block; margin: 0 6px 8px; padding: 10px 14px; background: #151815; border: 1px solid #2d332d; border-radius: 10px; color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 12px; text-align: center;"><strong style="color: #e84a2f;">COMIC</strong><br/>The No-Cost Trap · PDF</span>
           </p>
         </td>
       </tr>
       <tr>
-        <td colspan="2" bgcolor="#0d0f0d" style="padding: 14px 28px; text-align: left;">
+        <td bgcolor="#0d0f0d" align="center" style="padding: 14px 28px; text-align: center;">
           <span style="color: #f1f3f1; font-family: system-ui, sans-serif; font-size: 13px; font-weight: 700;">India-first</span>
-          <span style="color: #656a66; font-family: system-ui, sans-serif; font-size: 13px; margin-left: 16px;">GST · fees · interest · lost cash discounts</span>
-          <span style="float: right; color: #16794b; font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700;">emitruth.in</span>
+          <span style="color: #656a66; font-family: system-ui, sans-serif; font-size: 13px; margin: 0 16px;">GST · fees · interest · lost cash discounts</span>
+          <span style="color: #16794b; font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700;">emitruth.in</span>
         </td>
       </tr>
     </table>
   </a>
-</p>
+</div>
 
 <p align="center">
   A <strong>India-first finance education site</strong> built with <strong>React</strong>, <strong>Vite</strong>, and deployed on <strong>Vercel</strong>.

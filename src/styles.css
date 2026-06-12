@@ -2378,29 +2378,29 @@ h2 {
   padding: 30px 4vw 40px;
   background: var(--soft);
   border-bottom: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
 }
 
 .reader-layout {
-  display: block;
+  min-width: 0;
 }
 
 .reader-main {
   min-width: 0;
 }
 
-.reader-ad-panel {
+.ad-slot-reader {
   position: sticky;
   top: 100px;
+  align-self: start;
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 300px;
-}
-
-.ad-slot-reader {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-shrink: 0;
 }
 
 /* 300×600 Half Page — top IAB CPM unit for sidebar */
@@ -2794,6 +2794,10 @@ h2 {
     padding-left: 28px;
   }
 
+  .book-reader {
+    display: block;
+  }
+
   /* Half-page reader ad dominates narrow screens — comic stays primary */
   .ad-slot-reader {
     display: none;
@@ -2882,7 +2886,7 @@ h2 {
   }
 
   .module-sources {
-    padding: 46px 0 52px 44px;
+    padding: 46px 16px 52px;
   }
 
   .module-sources > div,
@@ -2902,7 +2906,7 @@ h2 {
   }
 
   .module-quiz {
-    padding: 50px 0 58px 44px;
+    padding: 50px 16px 58px;
   }
 
   .quiz-heading,
@@ -3376,6 +3380,31 @@ h2 {
     padding-left: 28px;
     padding-right: 28px;
   }
+
+  .comic-prerequisites {
+    grid-template-columns: 1fr;
+    padding: 56px 28px 60px;
+    gap: 40px;
+  }
+
+  .comic-hero-copy {
+    grid-template-columns: 1fr;
+    padding-left: 28px;
+  }
+
+  .free-resource {
+    grid-template-columns: 48px 1fr;
+  }
+
+  .resource-content {
+    padding: 56px 28px 64px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .resource-copy h2 {
+    font-size: clamp(36px, 8vw, 52px);
+  }
 }
 
 @media (max-width: 620px) {
@@ -3423,7 +3452,7 @@ h2 {
   }
 
   .summary-heading {
-    padding: 40px 16px 36px 44px;
+    padding: 40px 16px 36px;
   }
 
   .summary-heading h2 {
@@ -3435,7 +3464,7 @@ h2 {
   }
 
   .summary-pointers {
-    padding: 30px 16px 40px 44px;
+    padding: 30px 16px 40px;
   }
 
   .summary-pointers li {
@@ -3445,7 +3474,7 @@ h2 {
   }
 
   .module-comic-banner {
-    padding: 14px 16px 14px 44px;
+    padding: 14px 16px;
   }
 }
 
@@ -3697,7 +3726,7 @@ h2 {
 
 @media (max-width: 620px) {
   .site-header {
-    min-height: 72px;
+    min-height: 64px;
   }
 
   .method-link {
@@ -3705,22 +3734,22 @@ h2 {
   }
 
   .hero {
-    min-height: 240px;
-    grid-template-columns: 34px 1fr;
+    min-height: auto;
+    grid-template-columns: 28px minmax(0, 1fr);
   }
 
   .hero-copy {
-    padding: 36px 0 28px 18px;
+    padding: 40px 20px 24px 16px;
   }
 
   .hero h1 {
-    font-size: clamp(48px, 15vw, 72px);
+    font-size: clamp(44px, 14vw, 60px);
   }
 
   .hero-copy > p {
     width: 100%;
     margin-top: 28px;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .hero-index,
@@ -3788,15 +3817,17 @@ h2 {
   .analysis-section,
   .method-section,
   .schedule-section,
-  .faq-section {
-    grid-template-columns: 34px 1fr;
+  .faq-section,
+  .free-resource {
+    grid-template-columns: 28px minmax(0, 1fr);
   }
 
   .analysis-content,
   .method-content,
   .schedule-wrap,
-  .faq-content {
-    padding: 64px 0 70px 18px;
+  .faq-content,
+  .resource-content {
+    padding: 54px 0 60px 16px;
   }
 
   .analysis-heading,
@@ -4230,9 +4261,9 @@ h2 {
   }
 
   .comic-prerequisites {
-    padding: 50px 0 56px 44px;
+    padding: 44px 16px 52px;
     grid-template-columns: 1fr;
-    gap: 38px;
+    gap: 32px;
   }
 
   .prerequisite-heading {
@@ -4302,6 +4333,272 @@ h2 {
   .comic-page > .ad-slot {
     min-height: 64px;
     margin-top: 0;
+  }
+}
+
+/* Mobile polish — overrides only below breakpoints; desktop layout unchanged */
+@media (max-width: 900px) {
+  .result-panel {
+    min-height: 0;
+  }
+
+  .module-sidebar {
+    padding: 24px 0;
+  }
+
+  .module-progress {
+    position: static;
+  }
+
+  .learn-cta {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .comic-promo,
+  .module-comic-banner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .module-comic-banner strong {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .header-bar {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .site-header,
+  main,
+  .site-footer > .footer-inner,
+  .footer-bottom-inner {
+    width: calc(100% - max(24px, env(safe-area-inset-left) + env(safe-area-inset-right)));
+  }
+
+  .wordmark {
+    min-height: 44px;
+    gap: 8px;
+  }
+
+  .site-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .method-link {
+    min-height: 44px;
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .hero-copy {
+    padding: 40px 20px 24px 16px;
+  }
+
+  .hero-example-picker .example-options {
+    grid-template-rows: repeat(2, minmax(72px, auto));
+  }
+
+  .hero-example-picker .example-option {
+    min-height: 72px;
+  }
+
+  .hero-example-picker .example-option button:not(.example-info-trigger) {
+    padding: 10px 22px 10px 10px;
+  }
+
+  .bank-charges-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .bank-charges-label span:last-child {
+    font-size: 10px;
+  }
+
+  .verdict strong {
+    font-size: clamp(44px, 14vw, 58px);
+  }
+
+  .verdict-suffix,
+  .verdict-context,
+  .verdict-insight {
+    font-size: 12px;
+  }
+
+  .result-breakdown-row strong {
+    font-size: 11px;
+  }
+
+  .share-button,
+  .tenure-options button,
+  .spread-nav {
+    min-height: 44px;
+  }
+
+  .reader-progress button {
+    width: 10px;
+    height: 10px;
+    padding: 8px;
+    background-clip: content-box;
+  }
+
+  .section-rail span:last-child {
+    font-size: 8px;
+  }
+
+  .free-resource {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+
+  .resource-content {
+    padding: 48px 0 56px 16px;
+  }
+
+  .resource-copy > p {
+    margin-top: 22px;
+    font-size: 13px;
+  }
+
+  .resource-actions a {
+    min-height: 48px;
+  }
+
+  .schedule-wrap {
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .schedule-table {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .schedule-row {
+    font-size: 10px;
+  }
+
+  .faq-list summary {
+    padding-right: 28px;
+    line-height: 1.45;
+  }
+
+  .faq-answer {
+    padding: 12px 14px;
+  }
+
+  .site-footer {
+    margin-top: 48px;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .footer-tagline {
+    font-size: clamp(20px, 6.5vw, 28px);
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px 0 max(20px, env(safe-area-inset-bottom));
+    font-size: 10px;
+  }
+
+  .learn-cta {
+    padding: 52px 16px;
+    gap: 28px;
+  }
+
+  .learn-cta h2 {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+
+  .module-open {
+    width: 100%;
+    justify-content: space-between;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .module-sidebar {
+    padding: 20px 0 28px;
+  }
+
+  .next-module {
+    padding: 44px 16px;
+  }
+
+  .comic-hero-copy {
+    padding: 40px 16px 34px;
+  }
+
+  .comic-download {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .comic-takeaway {
+    padding: 44px 16px;
+    min-height: 0;
+  }
+
+  .comic-takeaway h2 {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .prerequisite-heading h2 {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .prerequisite-heading p {
+    margin-top: 18px;
+    font-size: 12px;
+  }
+
+  .comic-promo {
+    margin-top: 36px;
+    padding: 18px 16px;
+    min-height: 0;
+  }
+
+  .comic-promo strong {
+    font-size: 16px;
+  }
+
+  .module-comic-banner {
+    padding: 16px;
+    min-height: 0;
+  }
+
+  .official-links a,
+  .module-sources a {
+    min-height: 44px;
+    padding: 12px 0;
+  }
+
+  .quiz-submit,
+  .quiz-retry {
+    min-height: 48px;
+  }
+
+  .example-info-popover {
+    width: min(240px, calc(100vw - 48px));
+    max-width: none;
+    left: auto;
+    right: 0;
   }
 }
 
