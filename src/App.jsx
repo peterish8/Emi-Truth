@@ -6,6 +6,7 @@ import {
   readInputsFromUrl,
   toShareUrl,
 } from "./calculator";
+import { checkoutQuestions } from "./checkoutQuestions";
 import {
   getLearningModule,
   learningModules,
@@ -69,7 +70,7 @@ function Header({ learn = false }) {
         <a className={learn ? "active-link" : ""} href="/learn">
           Learn
         </a>
-        <a href="/#faq">FAQ</a>
+        <a href="/#checkout-questions">Before checkout</a>
       </nav>
       <a className="method-link" href={learn ? "/#calculator" : "/learn"}>
         {learn ? "Open calculator" : "Learn EMI basics"} <Arrow />
@@ -413,45 +414,37 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="faq-section" id="faq">
+        <section className="faq-section" id="checkout-questions">
           <div className="section-rail">
             <span>04</span>
-            <span>FAQ</span>
+            <span>Checkout</span>
           </div>
           <div className="faq-content">
-            <h2>Questions worth asking before checkout.</h2>
+            <div>
+              <h2>Questions worth asking before checkout.</h2>
+              <p className="faq-lead">
+                Ask the seller, payment page or your card issuer — not generic
+                website FAQ. A clear answer helps you decide. A vague or
+                misleading one is a pause signal.
+              </p>
+            </div>
             <div className="faq-list" data-reveal-group>
-              <details>
-                <summary>Is no-cost EMI actually free?</summary>
-                <p>
-                  Usually not completely. The interest may be offset by an
-                  upfront discount, but GST on interest, processing fees and
-                  lost cash discounts can make EMI more expensive.
-                </p>
-              </details>
-              <details>
-                <summary>Why is GST charged every month?</summary>
-                <p>
-                  GST applies to the interest charged by the bank. Since the
-                  interest portion changes each month, the GST amount also
-                  changes.
-                </p>
-              </details>
-              <details>
-                <summary>Does this match every bank statement?</summary>
-                <p>
-                  It is an estimate based on the values you enter. Banks may use
-                  different rounding, billing dates, foreclosure charges or
-                  additional taxes. Verify the final offer terms.
-                </p>
-              </details>
-              <details>
-                <summary>Do you store my purchase information?</summary>
-                <p>
-                  No. The calculation runs in your browser. Sharing creates a
-                  URL containing only the numbers entered into the calculator.
-                </p>
-              </details>
+              {checkoutQuestions.map((item) => (
+                <details key={item.ask}>
+                  <summary>{item.ask}</summary>
+                  <div className="faq-answers">
+                    <p className="faq-context">{item.context}</p>
+                    <div className="faq-answer faq-answer-good">
+                      <span className="faq-answer-label">Good answer</span>
+                      <p>{item.good}</p>
+                    </div>
+                    <div className="faq-answer faq-answer-bad">
+                      <span className="faq-answer-label">Bad answer — pause</span>
+                      <p>{item.bad}</p>
+                    </div>
+                  </div>
+                </details>
+              ))}
             </div>
           </div>
         </section>

@@ -847,6 +847,70 @@ h2 {
   content: "−";
 }
 
+.faq-lead {
+  max-width: 36ch;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.faq-answers {
+  padding-bottom: 8px;
+}
+
+.faq-context {
+  max-width: 590px;
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.faq-answer {
+  max-width: 590px;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.faq-answer-good {
+  background: #eef7f1;
+  border-color: #b8dcc8;
+}
+
+.faq-answer-bad {
+  background: #fff3f0;
+  border-color: #f0c4b8;
+}
+
+.faq-answer-label {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.faq-answer-good .faq-answer-label {
+  color: var(--green);
+}
+
+.faq-answer-bad .faq-answer-label {
+  color: var(--red);
+}
+
+.faq-answer p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
 .faq-list p {
   max-width: 590px;
   margin: 0 0 26px;
