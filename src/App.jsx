@@ -282,19 +282,20 @@ function HomePage() {
                 ))}
               </div>
             </div>
-            <details className="advanced-inputs">
-              <summary>Bank charges — rate, processing fee, GST</summary>
-              <div className="input-grid lower-inputs">
-                {fields.slice(3).map((field) => (
-                  <NumberInput
-                    field={field}
-                    key={field.key}
-                    value={inputs[field.key]}
-                    onChange={updateInput}
-                  />
-                ))}
-              </div>
-            </details>
+            <div className="bank-charges-label">
+              <span className="figure-label">BANK CHARGES</span>
+              <span>Rate, processing fee, GST</span>
+            </div>
+            <div className="input-grid lower-inputs">
+              {fields.slice(3).map((field) => (
+                <NumberInput
+                  field={field}
+                  key={field.key}
+                  value={inputs[field.key]}
+                  onChange={updateInput}
+                />
+              ))}
+            </div>
           </div>
 
           <div className="result-panel" aria-live="polite">

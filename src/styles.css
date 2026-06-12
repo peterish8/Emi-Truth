@@ -202,37 +202,15 @@ main {
   line-height: 1.65;
 }
 
-.advanced-inputs {
+.bank-charges-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0 12px;
   border-bottom: 1px solid var(--line);
-}
-
-.advanced-inputs summary {
-  padding: 16px 0;
   color: var(--muted);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  list-style: none;
-}
-
-.advanced-inputs summary::-webkit-details-marker {
-  display: none;
-}
-
-.advanced-inputs summary::after {
-  content: "+";
-  float: right;
-  font-family: "DM Mono", monospace;
-  font-weight: 400;
-}
-
-.advanced-inputs[open] summary::after {
-  content: "−";
-}
-
-.advanced-inputs[open] summary {
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--line);
+  font-size: 12px;
 }
 
 .verdict-insight {
