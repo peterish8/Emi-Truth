@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+vite.log
+vite-error.log
+images storyboards/
+mcps/
+.claude/
+agent-tools/
