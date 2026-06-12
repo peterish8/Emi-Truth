@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" role="img" aria-label="EMI Truth banner">
+  <defs>
+    <radialGradient id="bgBase" cx="72%" cy="18%" r="88%">
+      <stop offset="0%" stop-color="#f8faf8"/>
+      <stop offset="100%" stop-color="#eef2ee"/>
+    </radialGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1d8f5c"/>
+      <stop offset="100%" stop-color="#16794b"/>
+    </linearGradient>
+    <linearGradient id="warnGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6b4f"/>
+      <stop offset="100%" stop-color="#e84a2f"/>
+    </linearGradient>
+    <linearGradient id="border" x1="0" y1="0" x2="1200" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#cfd3cf"/>
+      <stop offset="50%" stop-color="#111411"/>
+      <stop offset="100%" stop-color="#cfd3cf"/>
+    </linearGradient>
+    <clipPath id="clip"><rect x="1" y="1" width="1198" height="378" rx="23" ry="23"/></clipPath>
+    <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#16794b" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#16794b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#16794b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="orbRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16794b"/>
+      <stop offset="100%" stop-color="#e84a2f"/>
+    </linearGradient>
+    <pattern id="checkGrid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <rect width="26" height="26" fill="#16794b" opacity="0.03"/>
+      <rect x="26" y="26" width="26" height="26" fill="#16794b" opacity="0.03"/>
+      <path d="M0 26H52M26 0V52" stroke="#cfd3cf" stroke-width="0.6" opacity="0.8"/>
+    </pattern>
+    <pattern id="diagHatch" width="80" height="80" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <line x1="0" y1="0" x2="0" y2="80" stroke="#16794b" stroke-width="0.5" opacity="0.05"/>
+    </pattern>
+    <radialGradient id="gridFade" cx="36%" cy="48%" r="72%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="gridMask"><rect x="1" y="1" width="1198" height="378" fill="url(#gridFade)"/></mask>
+  </defs>
+  <rect x="0.5" y="0.5" width="1199" height="379" rx="24" ry="24" fill="url(#bgBase)" stroke="url(#border)" stroke-width="1.2"/>
+  <g clip-path="url(#clip)">
+    <rect x="1" y="1" width="1198" height="378" fill="url(#bgBase)"/>
+    <g mask="url(#gridMask)">
+      <rect x="1" y="1" width="1198" height="378" fill="url(#checkGrid)"/>
+      <rect x="1" y="1" width="1198" height="378" fill="url(#diagHatch)"/>
+    </g>
+    <rect x="1" y="1" width="4" height="376" rx="2" fill="url(#accentGrad)" opacity="0.95"/>
+    <g transform="translate(930, 190)">
+      <circle r="88" fill="url(#orbGlow)"/>
+      <circle r="72" fill="none" stroke="#e8ece8" stroke-width="8"/>
+      <circle r="72" fill="none" stroke="url(#orbRing)" stroke-width="6" stroke-dasharray="18 12" opacity="0.85"/>
+      <circle r="52" fill="#fff" stroke="#16794b" stroke-width="1.5" opacity="0.9"/>
+      <text y="8" text-anchor="middle" fill="#16794b" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="28" font-weight="900">₹</text>
+    </g>
+    <rect x="72" y="44" width="84" height="84" rx="20" fill="#16794b"/>
+    <path d="M98 78 L112 92 L148 58" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="72" y="210" fill="#111411" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="54" font-weight="900" letter-spacing="-2.5">EMI<tspan fill="url(#accentGrad)"> Truth</tspan></text>
+    <text x="72" y="256" fill="#656a66" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="16" font-weight="500">True no-cost EMI calculator · Consumer academy · Visual stories for India</text>
+    <g transform="translate(72, 298)"><rect width="148" height="40" rx="10" fill="#fff" stroke="#111411" stroke-width="1"/><circle cx="22" cy="20" r="4" fill="#16794b"/><text x="36" y="25" fill="#111411" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="12" font-weight="700">Calculator</text></g>
+    <g transform="translate(236, 298)"><rect width="148" height="40" rx="10" fill="#fff" stroke="#16794b" stroke-width="1.2"/><text x="74" y="25" text-anchor="middle" fill="#16794b" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="12" font-weight="800">8 Modules</text></g>
+    <g transform="translate(400, 298)"><rect width="148" height="40" rx="10" fill="#fff" stroke="#e84a2f" stroke-width="1" opacity="0.9"/><circle cx="22" cy="20" r="4" fill="#e84a2f"/><text x="36" y="25" fill="#111411" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="12" font-weight="700">Comic</text></g>
+    <text x="72" y="356" fill="#656a66" font-family="Segoe UI, Manrope, system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5">GST  ·  FEES  ·  INTEREST  ·  CASH VS EMI  ·  MADE IN INDIA</text>
+  </g>
+</svg>
