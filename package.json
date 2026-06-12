@@ -7,9 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "security:vercel": "powershell -ExecutionPolicy Bypass -File scripts/setup-vercel-security.ps1"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "@vitejs/plugin-react": "^4.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

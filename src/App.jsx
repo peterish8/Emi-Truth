@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   calculateEmi,
   readInputsFromUrl,
@@ -1119,10 +1121,18 @@ function App() {
       ? "Consumer EMI Academy — EMI Truth"
     : "EMI Truth — True No-Cost EMI Calculator";
 
-  if (isComic) return <ComicPage />;
-  if (module) return <ModulePage module={module} />;
-  if (isLearn) return <LearnPage />;
-  return <HomePage />;
+  let page = <HomePage />;
+  if (isComic) page = <ComicPage />;
+  else if (module) page = <ModulePage module={module} />;
+  else if (isLearn) page = <LearnPage />;
+
+  return (
+    <>
+      {page}
+      <Analytics />
+      <SpeedInsights />
+    </>
+  );
 }
 
 export default App;
